@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    public float speed = 10f;
+    private float speed;
+
     private Rigidbody2D characterBody;
     private Vector2 velocity;
     private Vector2 inputMovement;
@@ -37,8 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 delta = inputMovement * velocity * Time.deltaTime;
-        Vector2 newPosition = characterBody.position + delta;
-        characterBody.MovePosition(newPosition);
+        // move the player based on input and velocity
+            characterBody.MovePosition(characterBody.position + inputMovement * velocity * Time.fixedDeltaTime);
     }
 }
