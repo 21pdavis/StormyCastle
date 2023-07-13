@@ -1,4 +1,5 @@
 using UnityEngine;
+using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D characterBody;
     private Vector2 velocity;
-    private Vector2 inputMovement;
+    //private Vector2 inputMovement;
+    private Vector2 positionDelta;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +21,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputMovement = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
-        );
+        
+    }
+
+    private void FixedUpdate()
+    {
+        // move the player based on input and velocity
+        characterBody.MovePosition(characterBody.position + positionDelta);
+    }
+
+    public void Move(CallbackContext context)
+    {
+        Vector2 inputMovement = context.ReadValue<Vector2>();
 
         if (inputMovement.x > 0)
         {
@@ -34,11 +44,7 @@ public class PlayerMovement : MonoBehaviour
             // change scale of player to face left
             transform.localScale = new Vector3(-1, 1, 1);
         }
-    }
 
-    private void FixedUpdate()
-    {
-        // move the player based on input and velocity
-            characterBody.MovePosition(characterBody.position + inputMovement * velocity * Time.fixedDeltaTime);
+        positionDelta = inputMovement * velocity * Time.fixedDeltaTime;
     }
 }
