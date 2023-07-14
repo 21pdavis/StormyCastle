@@ -1,17 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimationStateController : MonoBehaviour
 {
     Animator animator;
     PlayerMovement playerMovement;
+    PlayerCombat playerCombat;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerCombat = GetComponent<PlayerCombat>();
+    }
+
+    private void Update()
+    {
+        playerMovement.canMove = !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
     }
 
     public void Move()
@@ -31,5 +36,13 @@ public class PlayerAnimationStateController : MonoBehaviour
     public void Roll()
     {
 
+    }
+
+    public void Attack()
+    {
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animator.SetTrigger("attackTrigger");
+        }
     }
 }

@@ -1,6 +1,8 @@
 using UnityEngine;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
+using static Helpers;
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
@@ -10,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velocity;
     private Vector2 positionDelta;
     private PlayerAnimationStateController animationController;
+    public ParticleSystem dust;
+    public bool canMove;
     public bool moving;
 
     // Start is called before the first frame update
     void Start()
     {
         moving = false;
+        canMove = true;
         velocity = new Vector2(speed, speed);
         characterBody = GetComponent<Rigidbody2D>();
         animationController = GetComponent<PlayerAnimationStateController>();
@@ -40,29 +45,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMove()
     {
+        if (!canMove)
+            return;
+
         // move the player based on input and velocity
         characterBody.MovePosition(characterBody.position + positionDelta);
-    }
-
-    private void FlipSprite(Vector2 inputMovement)
-    {
-        // flip sprite to face left or right depending on input x value
-        if (inputMovement.x >= 0.01)
-        {
-            // change scale of player to face right
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (inputMovement.x <= -0.01)
-        {
-            // change scale of player to face left
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
     }
 
     public void Move(CallbackContext context)
     {
         Vector2 inputMovement = context.ReadValue<Vector2>();
-        FlipSprite(inputMovement);
+        FlipSprite(inputMovement, transform);
 
         // set moving to true if the player is moving
         moving = Mathf.Abs(inputMovement.x) >= 0.01 || Mathf.Abs(inputMovement.y) >= 0.01;
