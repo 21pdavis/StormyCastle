@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
 
         // get vector in direction of next waypoint (vector subtraction, https://www.varsitytutors.com/hotmath/hotmath_help/topics/adding-and-subtracting-vectors)
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = speed * Time.deltaTime * direction;
+        Vector2 force = speed * Time.fixedDeltaTime * direction;
 
         // push in direction and flip sprite
         rb.AddForce(force);
