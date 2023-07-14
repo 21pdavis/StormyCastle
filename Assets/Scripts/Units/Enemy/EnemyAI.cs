@@ -6,7 +6,6 @@ using static Helpers;
 public class EnemyAI : MonoBehaviour
 {
     public Transform target;
-    public Transform enemyGraphics;
 
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
@@ -65,7 +64,7 @@ public class EnemyAI : MonoBehaviour
 
         // push in direction and flip sprite
         rb.AddForce(force);
-        FlipSprite(force, enemyGraphics);
+        FlipSprite(force, transform);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWaypointDistance)

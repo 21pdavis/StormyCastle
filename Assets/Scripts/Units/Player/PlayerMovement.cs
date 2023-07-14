@@ -2,6 +2,8 @@ using UnityEngine;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,9 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private float speed;
 
     private Rigidbody2D characterBody;
+    private Animator animator;
     private Vector2 velocity;
     private Vector2 positionDelta;
-    private PlayerAnimationStateController animationController;
     public ParticleSystem dust;
     public bool canMove;
     public bool moving;
@@ -23,13 +25,14 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         velocity = new Vector2(speed, speed);
         characterBody = GetComponent<Rigidbody2D>();
-        animationController = GetComponent<PlayerAnimationStateController>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateAnimation();
+        canMove = !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Roll");
+        AnimateMove();
     }
 
     private void FixedUpdate()
@@ -37,10 +40,18 @@ public class PlayerMovement : MonoBehaviour
         UpdateMove();
     }
 
-    private void UpdateAnimation()
+    public void AnimateMove()
     {
-        animationController.Move();
-        animationController.Roll();
+        bool isRunning = animator.GetBool("isRunning");
+
+        if (moving && !isRunning)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else if (!moving && isRunning)
+        {
+            animator.SetBool("isRunning", false);
+        }
     }
 
     private void UpdateMove()
@@ -49,18 +60,32 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         // move the player based on input and velocity
+        FlipSprite(positionDelta, transform);
         characterBody.MovePosition(characterBody.position + positionDelta);
     }
 
     public void Move(CallbackContext context)
     {
-        Vector2 inputMovement = context.ReadValue<Vector2>();
-        FlipSprite(inputMovement, transform);
+        if (context.canceled)
+        {
+            positionDelta = Vector2.zero;
+            moving = false;
+        }
 
-        // set moving to true if the player is moving
-        moving = Mathf.Abs(inputMovement.x) >= 0.01 || Mathf.Abs(inputMovement.y) >= 0.01;
+        if (context.performed)
+        {
+            Vector2 inputMovement = context.ReadValue<Vector2>();
+            
+            // set moving to true if the player is moving
+            moving = Mathf.Abs(inputMovement.x) > 0 || Mathf.Abs(inputMovement.y) > 0;
 
-        // update position delta based on input movement and movement speed (fixedDeltaTime because the movement is updated in FixedUpdate)
-        positionDelta = inputMovement * velocity * Time.fixedDeltaTime;
+            // update position delta based on input movement and movement speed (fixedDeltaTime because the movement is updated in FixedUpdate)
+            positionDelta = inputMovement * velocity * Time.fixedDeltaTime;
+        }
+    }
+
+    public void Roll(CallbackContext context)
+    {
+        // TODO
     }
 }

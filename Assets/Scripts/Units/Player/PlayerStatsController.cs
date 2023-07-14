@@ -1,9 +1,9 @@
 using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
+using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 public class PlayerStatsController : MonoBehaviour
 {
-    private PlayerStats playerStats;
+    public PlayerStats playerStats { private set; get; }
 
     public HealthBar healthBar;
     public ManaBar manaBar;
