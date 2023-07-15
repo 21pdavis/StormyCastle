@@ -11,21 +11,69 @@ public class EnemyAI : MonoBehaviour
     public float nextWaypointDistance = 3f;
 
     // current path we are following
-    Path path;
+    private Path path;
     // current targeted waypoint on path
-    int currentWaypoint = 0;
+    private int currentWaypoint = 0;
     //bool reachedEndOfPath = false;
+    private bool moving;
 
-    Seeker seeker;
-    Rigidbody2D rb;
+    private Seeker seeker;
+    private Rigidbody2D rb;
+    private Animator animator;
 
-    void Start()
+    private void Start()
     {
+        moving = false;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
-        // invoke function UpdaetPath every 0.5 seconds
-        InvokeRepeating(nameof(UpdatePath), 0f, .5f);
+        // invoke function UpdatePath every 0.5 seconds
+        InvokeRepeating(nameof(UpdatePath), 0f, .3f);
+    }
+
+    private void Update()
+    {
+        AnimateMove();
+    }
+
+    private void FixedUpdate()
+    {
+        if (path == null)
+            return;
+
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            //reachedEndOfPath = true;
+            return;
+        }
+        else
+        {
+            //reachedEndOfPath = false;
+        }
+
+        if (rb.velocity.magnitude > 0f)
+        {
+            moving = true;
+        }
+        else
+        {
+            moving = false;
+        }
+
+        // get vector in direction of next waypoint (vector subtraction, https://www.varsitytutors.com/hotmath/hotmath_help/topics/adding-and-subtracting-vectors)
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = speed * Time.fixedDeltaTime * direction;
+
+        // push in direction and flip sprite
+        rb.AddForce(force);
+        FlipSprite(force, transform);
+
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
     }
 
     void UpdatePath()
@@ -43,33 +91,17 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    public void AnimateMove()
     {
-        if (path == null)
-            return;
+        bool isRunning = animator.GetBool("isRunning");
 
-        if (currentWaypoint >= path.vectorPath.Count)
+        if (moving && !isRunning)
         {
-            //reachedEndOfPath = true;
-            return;
+            animator.SetBool("isRunning", true);
         }
-        else
+        else if (!moving && isRunning)
         {
-            //reachedEndOfPath = false;
-        }
-
-        // get vector in direction of next waypoint (vector subtraction, https://www.varsitytutors.com/hotmath/hotmath_help/topics/adding-and-subtracting-vectors)
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = speed * Time.fixedDeltaTime * direction;
-
-        // push in direction and flip sprite
-        rb.AddForce(force);
-        FlipSprite(force, transform);
-
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
+            animator.SetBool("isRunning", false);
         }
     }
 }
