@@ -1,21 +1,15 @@
 using UnityEngine;
 
 // TODO: Healthbars and damage numbers
-public class EnemyStatsController : MonoBehaviour
+public abstract class EnemyStatsController : MonoBehaviour
 {
-    public EnemyStats enemyStats { private set; get; }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        enemyStats = ScriptableObject.CreateInstance<EnemyStats>();
-    }
+    public EnemyStats stats { set; get; }
 
     public void TakeDamage(int amount)
     {
-        enemyStats.ModifyHealth(-amount);
+        stats.ModifyHealth(-amount);
 
-        if (enemyStats.currentHealth <= 0)
+        if (stats.currentHealth <= 0)
         {
             Die();
         }
@@ -23,7 +17,7 @@ public class EnemyStatsController : MonoBehaviour
 
     public void Heal(int amount)
     {
-        enemyStats.ModifyHealth(amount);
+        stats.ModifyHealth(amount);
     }
 
     public void Die()

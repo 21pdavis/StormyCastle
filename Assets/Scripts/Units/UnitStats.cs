@@ -6,7 +6,7 @@ public class UnitStats : ScriptableObject
     public int currentHealth = 100;
 
     // Risk of Rain style damage, each unit has an assigned "damage" value and other damages are based on percentages of that
-    public const int damage = 5;
+    public int damage = 5;
 
     public void ModifyHealth(int delta)
     {

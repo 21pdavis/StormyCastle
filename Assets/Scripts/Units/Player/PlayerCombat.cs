@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
     private PlayerStatsController playerStatsController;
+    private PlayerStats playerStats;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -17,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerStatsController = GetComponent<PlayerStatsController>();
+        playerStats = playerStatsController.playerStats;
     }
 
     public void Attack(CallbackContext context)
@@ -39,13 +41,19 @@ public class PlayerCombat : MonoBehaviour
 
             foreach (var enemy in hitEnemies)
             {
-                EnemyStatsController enemyStatsController = enemy.GetComponent<EnemyStatsController>();
+                var enemyStatsController = enemy.GetComponent<EnemyStatsController>();
+
+                //if (enemyStatsController is SnakeStatsController) // leaving this here as a note on how to do this
+                //{
+                //    Debug.Log("It's a snake!");
+                //}
 
                 // get player's damage value
-                int damageDealt = PlayerStats.damage;
+                int damageDealt = playerStats.damage;
 
                 // actually deal damage
                 enemyStatsController.TakeDamage(damageDealt);
+                Debug.Log($"Hit {enemy.name}, its health was {enemyStatsController.stats.currentHealth + damageDealt} and is now {enemyStatsController.stats.currentHealth}");
             }
         }
     }
