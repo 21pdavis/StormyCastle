@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
 
 public class PlayButtonHandler : MonoBehaviour
 {
     public void OnPlayButtonClicked()
     {
-        SceneManager.LoadScene("Game");
+        // unsure of exact reasons, but LoadSceneAsync seems to not support the await syntax, so we have to use the callback (like .then() in JS)
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync("Game");
+
+        // await the load operation's completion, only switch after it is done
+        loadOperation.completed += (AsyncOperation operation) =>
+        {
+            Debug.Log("Finished Loading Game Scene");
+            StateManager.Instance.SetState(StateManager.GameState.IntroCutscene);
+        };
     }
 }
