@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 using static Helpers;
 
@@ -29,7 +30,7 @@ public class StateManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            SetState(GameState.MainMenu);
+            SetState(GameState.Playing);
         }
         else
         {
@@ -67,7 +68,6 @@ public class StateManager : MonoBehaviour
                 playerAwakening = new();
                 Time.timeScale = 0f;
                 StartCoroutine(playerAwakening.AwakeningStart());
-                // maybe a bad idea? Yes definitely, but I'm just going to leave it for now.
                 StartCoroutine(FadeInSound(playerAwakening.rainSound));
                 break;
             case GameState.Paused:
@@ -76,6 +76,8 @@ public class StateManager : MonoBehaviour
                 Time.timeScale = 0f;
                 break;
             case GameState.Playing:
+                
+
                 // Resume gameplay
                 Time.timeScale = 1f;
                 break;

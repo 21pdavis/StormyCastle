@@ -17,7 +17,7 @@ static class Helpers
     }
 
     /// <summary>
-    /// takes two normalized Vector2's and returns the angle between them on the unit circle
+    /// takes two normalized Vector2's and returns the degree angle between them on the unit circle
     /// </summary>
     /// <param name="v1">The first normalized vector</param>
     /// <param name="v2">The second normalized vector</param>
