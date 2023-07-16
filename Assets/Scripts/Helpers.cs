@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 static class Helpers
 {
@@ -31,5 +32,22 @@ static class Helpers
 
         // The dot product of two normalized vectors is equal to the cosine of the angle between them
         return Mathf.Rad2Deg * Mathf.Acos(Vector2.Dot(v1, v2));
+    }
+
+    public static IEnumerator FadeInSound(AudioSource source, float fadeDuration=15f, float fadeStep=0.005f)
+    {
+        float targetVolume = source.volume;
+        float elapsedTime = 0f;
+        float initialVolume = 0f;
+        source.volume = initialVolume;
+        source.Play();
+        while (elapsedTime < fadeDuration)
+        {
+            source.volume = Mathf.Lerp(initialVolume, targetVolume, elapsedTime / fadeDuration);
+            elapsedTime += fadeStep;
+            yield return new WaitForSecondsRealtime(fadeStep);
+        }
+
+        source.volume = targetVolume;
     }
 }

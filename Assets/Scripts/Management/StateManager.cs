@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using static Helpers;
+
 public class StateManager : MonoBehaviour
 {
     // follow the singleton pattern for the manager, should access this using StateManager.Instance and never instantiate StateManager
@@ -65,6 +67,8 @@ public class StateManager : MonoBehaviour
                 playerAwakening = new();
                 Time.timeScale = 0f;
                 StartCoroutine(playerAwakening.AwakeningStart());
+                // maybe a bad idea? Yes definitely, but I'm just going to leave it for now.
+                StartCoroutine(FadeInSound(playerAwakening.rainSound));
                 break;
             case GameState.Paused:
                 // Pause the game

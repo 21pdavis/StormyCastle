@@ -2,10 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+using static Helpers;
+
 public class PlayerAwakening
 {
     public Image blackScreen;
     public AudioSource bellSound;
+    public AudioSource rainSound;
     public GameObject player;
 
     public float fadeDuration = 3f;
@@ -13,7 +16,8 @@ public class PlayerAwakening
     public PlayerAwakening()
     {
         GameObject blackScreenObject = GameObject.Find("Black Cover");
-        GameObject bellSoundObject = GameObject.Find("Church Bell");
+        GameObject bellSoundObject = GameObject.Find("Church Bell Sound");
+        GameObject ambientSoundObject = GameObject.Find("Rain Sound");
         player = GameObject.Find("Player");
 
         if (blackScreenObject != null)
@@ -23,6 +27,10 @@ public class PlayerAwakening
         if (bellSoundObject != null)
         {
             bellSound = bellSoundObject.GetComponent<AudioSource>();
+        }
+        if (ambientSoundObject != null)
+        {
+            rainSound = ambientSoundObject.GetComponent<AudioSource>();
         }
     }
 
@@ -38,7 +46,7 @@ public class PlayerAwakening
 
         bellSound.Play();
 
-        yield return new WaitForSecondsRealtime(bellSound.clip.length / 4);
+        yield return new WaitForSecondsRealtime(bellSound.clip.length / 16);
 
         Color startColor = blackScreen.color;
         Color endColor = new Color(startColor.r, startColor.g, startColor.b, 0f);
