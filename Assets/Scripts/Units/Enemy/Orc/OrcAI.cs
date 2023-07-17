@@ -2,12 +2,12 @@ using UnityEngine;
 
 using static Helpers;
 
-public class OrcAI : EnemyAI
+public class OrcAI : EnemyAI<OrcStats>
 {
-    new protected void Start()
+    override protected void Start()
     {
         base.Start();
-        statsController = GetComponent<OrcStatsController>();
+        stats = GetComponent<OrcStats>();
     }
 
     private void OnDrawGizmos()
@@ -17,18 +17,19 @@ public class OrcAI : EnemyAI
         Color oldColor = Gizmos.color;
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, statsController.stats.aggroRange);
+        Gizmos.DrawWireSphere(transform.position, stats.aggroRange);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, statsController.stats.attackRange);
+        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
 
         Gizmos.color = oldColor;
     }
 
     // TODO: sightlines, when enemy is attacked, immediately aggro it
+    // TODO: currently no way to get back into Patrolling from another state. This might be fine in the room-based structure we're going for, though.
     public override void Patrol()
     {
-        if (Vector3.Distance(transform.position, target.position) < statsController.stats.aggroRange)
+        if (Vector3.Distance(transform.position, target.position) < stats.aggroRange)
         {
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
         }
@@ -38,7 +39,7 @@ public class OrcAI : EnemyAI
 
     public override void Chase()
     {
-        if (Vector3.Distance(transform.position, target.position) < statsController.stats.attackRange)
+        if (Vector3.Distance(transform.position, target.position) < stats.attackRange)
         {
             stateMachine.SetState(EnemyStateMachine.EnemyState.Attacking);
         }
@@ -84,9 +85,19 @@ public class OrcAI : EnemyAI
 
     public override void Attack()
     {
+        if (
+            Vector3.Distance(transform.position, target.position) > stats.attackRange
+            &&
+            Vector3.Distance(transform.position, target.position) < stats.aggroRange
+        )
+        {
+            stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
+        }
 
-
-        Debug.Log("Orc attacking");
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animator.SetTrigger("attackTrigger");
+        }
     }
 
     public override void Flee()

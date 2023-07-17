@@ -21,4 +21,9 @@ public class OrcStats : EnemyStats
         get { return _damage; }
         set { _damage = value; }
     }
+
+    protected override void Die()
+    {
+        // TODO
+    }
 }

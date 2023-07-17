@@ -3,17 +3,18 @@ using Pathfinding;
 
 using static Helpers;
 
-public abstract class EnemyAI : MonoBehaviour
+public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 {
     public Transform target;
 
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
 
+    public Stats stats { protected set; get; }
+
     protected Seeker seeker;
     protected Rigidbody2D rb;
     protected Animator animator;
-    protected EnemyStatsController statsController;
     protected EnemyStateMachine stateMachine;
 
     // current path we are following
@@ -28,7 +29,7 @@ public abstract class EnemyAI : MonoBehaviour
     public abstract void Attack();
     public abstract void Flee();
 
-    protected void Start()
+    protected virtual void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();

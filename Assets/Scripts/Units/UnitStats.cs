@@ -1,7 +1,6 @@
 using UnityEngine;
 
-// TODO: If possible, find a way to reduce boilerplate here, but I'm not sure it is. The benefits outweight the downsides of the verbosity, I think.
-public abstract class UnitStats : ScriptableObject
+public abstract class UnitStats : MonoBehaviour
 {
     private int _maxHealth = 100;
     private int _currentHealth = 100;
@@ -27,9 +26,26 @@ public abstract class UnitStats : ScriptableObject
         set { _damage = value; }
     }
 
-    public virtual void ModifyHealth(int delta)
+    private void ModifyHealth(int delta)
     {
         // Ensure that the current health doesn't exceed the maximum
         currentHealth = Mathf.Clamp(currentHealth + delta, 0, maxHealth);
     }
+
+    public virtual void TakeDamage(int amount)
+    {
+        ModifyHealth(-amount);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public virtual void Heal(int amount)
+    {
+        ModifyHealth(amount);
+    }
+
+    protected abstract void Die();
 }

@@ -3097,7 +3097,7 @@ GameObject:
   - component: {fileID: 330699142}
   - component: {fileID: 330699145}
   - component: {fileID: 330699141}
-  - component: {fileID: 330699148}
+  - component: {fileID: 330699150}
   - component: {fileID: 330699149}
   - component: {fileID: 330699138}
   - component: {fileID: 330699143}
@@ -3263,18 +3263,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &330699148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330699137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60943b78aee904f4c8e3c65f8c4a38d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &330699149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3290,6 +3278,18 @@ MonoBehaviour:
   target: {fileID: 352849980}
   speed: 200
   nextWaypointDistance: 3
+--- !u!114 &330699150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330699137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ee28fcbda013b4cbd82913502a5151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &348287380
 GameObject:
   m_ObjectHideFlags: 3
@@ -3397,8 +3397,8 @@ GameObject:
   - component: {fileID: 352849979}
   - component: {fileID: 352849978}
   - component: {fileID: 352849981}
+  - component: {fileID: 352849987}
   - component: {fileID: 352849977}
-  - component: {fileID: 352849985}
   - component: {fileID: 352849986}
   - component: {fileID: 352849982}
   - component: {fileID: 352849983}
@@ -3603,7 +3603,7 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 352849985}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerStatsController, Assembly-CSharp
         m_MethodName: TempSpace
         m_Mode: 0
@@ -3682,20 +3682,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &352849985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352849976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68899578528ae8c4aa5dbf1c25fc8d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 1542591555}
-  manaBar: {fileID: 1211619000}
 --- !u!114 &352849986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3713,6 +3699,20 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &352849987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352849976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7fa2cee75495949a59c61945795124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 1542591555}
+  manaBar: {fileID: 1211619000}
 --- !u!1 &361280439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3983,7 +3983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6314974, y: -0.72925735, z: -9.492213}
+  m_LocalPosition: {x: -2.2413673, y: -0.72702146, z: -9.492213}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10969,8 +10969,8 @@ GameObject:
   - component: {fileID: 2093542905}
   - component: {fileID: 2093542904}
   - component: {fileID: 2093542907}
-  - component: {fileID: 2093542906}
   - component: {fileID: 2093542910}
+  - component: {fileID: 2093542906}
   - component: {fileID: 2093542909}
   - component: {fileID: 2093542908}
   m_Layer: 8
@@ -11158,7 +11158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2093542902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c78dd16a44a97e046bdf0634bdb41911, type: 3}
+  m_Script: {fileID: 11500000, guid: 48130943d31724546868515a06a0abf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5876166265835152793

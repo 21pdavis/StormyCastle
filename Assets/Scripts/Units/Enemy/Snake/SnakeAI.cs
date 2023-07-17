@@ -2,12 +2,14 @@ using UnityEngine;
 
 using static Helpers;
 
-public class SnakeAI : EnemyAI
+public class SnakeAI : EnemyAI<SnakeStats>
 {
-    new protected void Start()
+    private float lastAttackTime = 0f;
+
+    override protected void Start()
     {
         base.Start();
-        statsController = GetComponent<SnakeStatsController>();
+        stats = GetComponent<SnakeStats>();
     }
 
     private void OnDrawGizmos()
@@ -17,10 +19,10 @@ public class SnakeAI : EnemyAI
         Color oldColor = Gizmos.color;
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, statsController.stats.aggroRange);
+        Gizmos.DrawWireSphere(transform.position, stats.aggroRange);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, statsController.stats.attackRange);
+        Gizmos.DrawWireSphere(transform.position, stats.attackRange);
 
         Gizmos.color = oldColor;
     }
@@ -28,7 +30,7 @@ public class SnakeAI : EnemyAI
     // TODO: sightlines, when enemy is attacked, immediately aggro it
     public override void Patrol()
     {
-        if (Vector3.Distance(transform.position, target.position) < statsController.stats.aggroRange)
+        if (Vector3.Distance(transform.position, target.position) < stats.aggroRange)
         {
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
         }
@@ -38,7 +40,7 @@ public class SnakeAI : EnemyAI
 
     public override void Chase()
     {
-        if (Vector3.Distance(transform.position, target.position) < statsController.stats.attackRange)
+        if (Vector3.Distance(transform.position, target.position) < stats.attackRange)
         {
             stateMachine.SetState(EnemyStateMachine.EnemyState.Attacking);
         }
@@ -84,10 +86,24 @@ public class SnakeAI : EnemyAI
 
     public override void Attack()
     {
-        Debug.Log("Snake attacking");
+        if (
+            Vector3.Distance(transform.position, target.position) > stats.attackRange
+            &&
+            Vector3.Distance(transform.position, target.position) < stats.aggroRange
+        )
+        {
+            stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
+        }
 
-        // attack state transition should be more of a "trigger"
-        stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && Time.time >= lastAttackTime + stats.attackInterval)
+        {
+            animator.SetTrigger("attackTrigger");
+            lastAttackTime = Time.time;
+        }
+        else if (Time.time < lastAttackTime + stats.attackInterval)
+        {
+
+        }
     }
 
     public override void Flee()

@@ -1,6 +1,3 @@
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "EnemyStats", menuName = "Enemy/EnemyStats")]
 public abstract class EnemyStats : UnitStats
 {
     private int _aggroRange = 5;
@@ -16,5 +13,22 @@ public abstract class EnemyStats : UnitStats
     {
         get { return _attackRange; }
         set { _attackRange = value; }
+    }
+
+    private void Start()
+    {
+        // TODO: Set up health bar/other resource bars
+    }
+
+    public override void TakeDamage(int amount)
+    {
+        // TODO: update health bar
+        base.TakeDamage(amount);
+    }
+
+    public override void Heal(int amount)
+    {
+        // TODO: update health bar
+        base.Heal(amount);
     }
 }
