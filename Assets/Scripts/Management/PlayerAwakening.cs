@@ -2,8 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-using static Helpers;
-
 public class PlayerAwakening
 {
     public Image blackScreen;

@@ -183,7 +183,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &76058472
 GameObject:
@@ -3097,8 +3097,8 @@ GameObject:
   - component: {fileID: 330699142}
   - component: {fileID: 330699145}
   - component: {fileID: 330699141}
-  - component: {fileID: 330699144}
   - component: {fileID: 330699148}
+  - component: {fileID: 330699149}
   - component: {fileID: 330699138}
   - component: {fileID: 330699143}
   - component: {fileID: 330699147}
@@ -3190,21 +3190,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &330699144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330699137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c611d8865d0fd0243b710f70e1548583, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 352849980}
-  speed: 400
-  nextWaypointDistance: 3
 --- !u!212 &330699145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3290,6 +3275,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b78aee904f4c8e3c65f8c4a38d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &330699149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330699137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5923ce7a041a9745a13aaea5ee1fc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 352849980}
+  speed: 200
+  nextWaypointDistance: 3
 --- !u!1 &348287380
 GameObject:
   m_ObjectHideFlags: 3
@@ -3396,10 +3396,10 @@ GameObject:
   - component: {fileID: 352849980}
   - component: {fileID: 352849979}
   - component: {fileID: 352849978}
+  - component: {fileID: 352849981}
   - component: {fileID: 352849977}
   - component: {fileID: 352849985}
   - component: {fileID: 352849986}
-  - component: {fileID: 352849981}
   - component: {fileID: 352849982}
   - component: {fileID: 352849983}
   m_Layer: 9
@@ -5349,7 +5349,7 @@ RectTransform:
   - {fileID: 155284540}
   - {fileID: 1112464265}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11078,7 +11078,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2093542902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c611d8865d0fd0243b710f70e1548583, type: 3}
+  m_Script: {fileID: 11500000, guid: d6fb17a80739aa342811e697c12d0bd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 352849980}
@@ -11168,13 +11168,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 399686797, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5876166266098440464, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
       propertyPath: m_Name
       value: TallCandelabra
       objectReference: {fileID: 0}
     - target: {fileID: 5876166266098440469, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5876166266098440469, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
       propertyPath: m_LocalPosition.x

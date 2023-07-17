@@ -3,30 +3,33 @@ using Pathfinding;
 
 using static Helpers;
 
-public class EnemyAI : MonoBehaviour
+public abstract class EnemyAI : MonoBehaviour
 {
     public Transform target;
 
     public float speed = 200f;
     public float nextWaypointDistance = 3f;
 
+    private Seeker seeker;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private EnemyStatsController statsController;
+
     // current path we are following
     private Path path;
     // current targeted waypoint on path
     private int currentWaypoint = 0;
-    //bool reachedEndOfPath = false;
+    private bool reachedEndOfPath = false;
     private bool moving;
 
-    private Seeker seeker;
-    private Rigidbody2D rb;
-    private Animator animator;
-
-    private void Start()
+    protected void Start()
     {
-        moving = false;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        statsController = GetComponent<EnemyStatsController>();
+
+        moving = false;
 
         // invoke function UpdatePath every 0.5 seconds
         InvokeRepeating(nameof(UpdatePath), 0f, .3f);
@@ -34,7 +37,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        AnimateMove();
+        //AnimateMove();
+        AnimateMove(animator, moving);
     }
 
     private void FixedUpdate()
@@ -44,12 +48,12 @@ public class EnemyAI : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            //reachedEndOfPath = true;
+            reachedEndOfPath = true;
             return;
         }
         else
         {
-            //reachedEndOfPath = false;
+            reachedEndOfPath = false;
         }
 
         if (rb.velocity.magnitude > 0f)
@@ -88,20 +92,6 @@ public class EnemyAI : MonoBehaviour
         {
             path = p;
             currentWaypoint = 0;
-        }
-    }
-
-    public void AnimateMove()
-    {
-        bool isRunning = animator.GetBool("isRunning");
-
-        if (moving && !isRunning)
-        {
-            animator.SetBool("isRunning", true);
-        }
-        else if (!moving && isRunning)
-        {
-            animator.SetBool("isRunning", false);
         }
     }
 }

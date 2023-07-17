@@ -57,3 +57,6 @@ TagManager:
   - name: Projectile
     uniqueID: 950023801
     locked: 0
+  - name: Fixtures
+    uniqueID: 1411743955
+    locked: 0
