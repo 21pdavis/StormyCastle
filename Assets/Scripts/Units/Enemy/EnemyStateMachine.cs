@@ -3,9 +3,9 @@ public class EnemyStateMachine
     public enum EnemyState
     {
         Patrolling,
-        Fleeing,
         Chasing,
-        Attacking
+        Attacking,
+        Fleeing
     }
 
     public EnemyState CurrentState { get; private set; }

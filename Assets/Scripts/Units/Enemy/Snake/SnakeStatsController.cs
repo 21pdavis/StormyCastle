@@ -7,6 +7,4 @@ public class SnakeStatsController : EnemyStatsController
         // cast stats as SnakeStats
         stats = ScriptableObject.CreateInstance<SnakeStats>();
     }
-
-    public void SpecialMethod() { }
 }

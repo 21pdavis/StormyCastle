@@ -1,7 +1,20 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyStats", menuName = "Enemy/EnemyStats")]
-public class EnemyStats : UnitStats
+public abstract class EnemyStats : UnitStats
 {
-    public int aggroRange = 10; // TODO
+    private int _aggroRange = 5;
+    private int _attackRange = 1;
+
+    public virtual int aggroRange
+    {
+        get { return _aggroRange; }
+        set { _aggroRange = value; }
+    }
+
+    public virtual int attackRange
+    {
+        get { return _attackRange; }
+        set { _attackRange = value; }
+    }
 }

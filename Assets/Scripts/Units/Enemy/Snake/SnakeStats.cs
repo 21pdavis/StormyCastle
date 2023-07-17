@@ -1,7 +1,24 @@
 public class SnakeStats : EnemyStats
 {
-    // override damage to be 10 using new keyword (might scale all these numbers down later to be smaller)
-    public new int damage = 10;
+    private int _aggroRange = 5;
+    private int _attackRange = 4;
+    private int _damage = 10;
 
-    public int range = 100;
+    public override int aggroRange
+    {
+        get { return _aggroRange; }
+        set { _aggroRange = value; }
+    }
+
+    public override int attackRange
+    {
+        get { return _attackRange; }
+        set { _attackRange = value; }
+    }
+
+    public override int damage
+    {
+        get { return _damage; }
+        set { _damage = value; }
+    }
 }

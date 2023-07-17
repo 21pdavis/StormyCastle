@@ -3,7 +3,7 @@ using UnityEngine;
 // TODO: Healthbars and damage numbers
 public abstract class EnemyStatsController : MonoBehaviour
 {
-    public EnemyStats stats { set; get; }
+    public EnemyStats stats { protected set; get; }
 
     public void TakeDamage(int amount)
     {
