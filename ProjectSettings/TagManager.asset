@@ -45,6 +45,9 @@ TagManager:
   - name: Background
     uniqueID: 2061644047
     locked: 0
+  - name: Decals
+    uniqueID: 183405071
+    locked: 0
   - name: Structure
     uniqueID: 1176390231
     locked: 0

@@ -152,7 +152,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &42387165
 GameObject:
@@ -421,7 +421,7 @@ Transform:
   - {fileID: 330699142}
   - {fileID: 2093542903}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &155284536
 GameObject:
@@ -2817,10 +2817,10 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.8742138, g: 0.9740178, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.6
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000000f31e27a574a1e46a1f84ed84b1f1d937936a038
+  m_ApplyToSortingLayers: 000000000f31e27a574a1e460f8aee0aa1f84ed84b1f1d937936a038d3802554
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 1
@@ -2997,7 +2997,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &328260299
 GameObject:
@@ -3030,7 +3030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+s+GV7jeQIAADMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFymzAQ/RWPzrUHHAh2by1xnB6SeOJ2cuEii8VoLCRGErGdjP+9KwGGulwsv919evt24YtwaWpgVum15vmzyoF8nxB3Jt8mQ/AJTnSv5JZ/Qp/zznNbuiTqc96o5Qrx0JUZVYHVnP2Qe+GSAwQbyQulq1W+h1QZaxAuqDCAIa2sq5YIfU3ICX+mS1dyxtM8cadPPC2DyQWPDKQFPUoNZ3GAT9gVhLOlf+J5V3c3i5P7ebKMo9U0SDxHI5mgVQ25a2igCpc9R+TTJLbaZTh2poTgptNJ7Ln2PqS0Ng12iQk5p9i3FxfMljEiJfB9aV0b4/rXojBgO180PT9wjQ62xOSnam2tqDm00j6oaLyG+cLLakmf/4tPQx8utKqe+nvDwN1hS84Ob/TMqLEj38fww6A99A4dqTjQnYD3EuSLWmvVyByDVjeutDEwfxj+XltLS2CHAW+l3oBNPVjej7kfsuvh4rs/pYJXO29l1AJbobzlfjdA43B+oWC/OaajQNSp+GPgN92PV6wLPHJtLIa6LqWTt1ONdqlk5T1z3TQ2VVqChzvRNUgq7HmDNPZ2hDex0bU3kUfqXqbu8i7WvyM3JR4e8oPgJrRRx+uwTKmOz2DK18YKLmEQ7QIv6FOqpGw3bOxJX7ZtdEHZqGzf8Pzf1SK7YBFF+Y4FbEGTeJdMgSWQLyCO7+Euug8i4nePS+yTik0rtLMHpyYHcol71n9jJmtNa7/tuabHNf+s1MhyLgu1ZRpAvrYMV+Gg8RJ8MfNVztGgLVjLpZ83+cqIUOwAeXYlynynq5PVNBtYMlLzD2UdkpHUf1Qy4uDrLm80fHA4ust7sgu5/AVQSwMEFAAACAgAAJif66FWgTdtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFKSgYWJSUpSskGyRaK5aZK5bmqyeWqKRaqpqVmqsYmZgYlSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJif6z4ZXuN5AgAAMwUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJif66FWgTdtAAAAeAAAAAkAJAAAAAAAAAAAAAAAxgIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAAB+AwAAAAA=
+    dataString: UEsDBBQAAAgIAACYn+uNV8YRZQIAABoFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFy2jAQ/RVG55KxCQTSW+sQ0kMSJrSTiy9CWmMNsuSR5ADJ8O9dyTJ26Qnx9u3u26eVv4hQtgbmtFkZwZ81B/J9RPyZfBv1wSc40p1WG/EJHeddcFd6Eg2cN+qERjz1aVZX4IxgP9ROenKCYKNEoU215DvItHUW4YJKCxgy2vlshdDXiBzxZ3zvU054msz96RNP98nojEcGyoEZUNObWceNzJbYKCZpVQP3qnt+eh/Zt4tAUzhPZCQ3E1+KaSmFjXqIO9Vh3ozWtsFpkMAFxfmCiORmgUAJYle6qOCS/loUFlwc39DTgzBoVFuX/NStexW1+1bcB5WN75ROWmFt0ef/4uM0hAujq6eub5r4Hq4UbP9GT4xaN7B3CD/00tPg0YHKPd1KeC9BveiV0Y3iGHSm8amNhclD//cyWlYC2/d4K/UKbOre9O42u7v0M5zD9MdMimobnJy2wEbq4HhYATB4Pb9QcFgQG0sg6lX8sfCb7oabFAOPwliHoTil8vK2ujGeSpbBMz9N4zJtFAQ4iq5BUelOayzjrq/wKjZoexV5pP7NxOYx1j2Fq5QA9/wkuQqt9eFyWbbUh2ew5WvjpFDQi/aBF/Qp00q1Gzb0pEvbNKagbJC2awT/d7XINllMp3zLErag89l2PgY2B76A2ewObqd3yZSE3RMK56Ry3QqN9uCtqb64wj3rPiWjlaF12HZu6GElPis9sFyoQm+YAVCvbYWLcDDYBJ8mX3KBBm3AOaHCfZOvnEjN9sDzS6E8TLo8OkPzvkpOavGhnUdykoVvR048fNnltYEPAQffvCt2Jue/UEsDBBQAAAgIAACYn+uhVoE3bQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSkoGFiUlKUrJBskWiuWmSuW5qsnlqikWqqalZqrGJmYGJUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACYn+uNV8YRZQIAABoFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+uhVoE3bQAAAHgAAAAJACQAAAAAAAAAAAAAALICAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAagMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -3161,7 +3161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330699137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2006685, y: -1.5189614, z: 0.5077869}
+  m_LocalPosition: {x: 2.9506683, y: -3.0189614, z: 0.5077869}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3182,7 +3182,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
+  m_LinearDrag: 100
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -3229,7 +3229,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -665913183
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b65f97d4acbfb7b48a9efae77193ac6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3276,8 +3276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 352849980}
-  speed: 200
-  nextWaypointDistance: 3
 --- !u!114 &330699150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3290,6 +3288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ee28fcbda013b4cbd82913502a5151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 100
+  _damage: 5
+  _speed: 2
+  _aggroRange: 7
+  _attackRange: 1
+  _attackInterval: 2
 --- !u!1 &348287380
 GameObject:
   m_ObjectHideFlags: 3
@@ -3421,7 +3426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dc4d5d742401c46b92d10928046ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
   dust: {fileID: 1400859004}
   canMove: 0
   moving: 0
@@ -3438,7 +3442,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 50
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -3485,7 +3489,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1826807989
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 1967674889, guid: a5bd162da8190eb4b9c5c5ab46918beb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3711,6 +3715,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7fa2cee75495949a59c61945795124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 100
+  _damage: 5
+  _speed: 5
   healthBar: {fileID: 1542591555}
   manaBar: {fileID: 1211619000}
 --- !u!1 &361280439
@@ -3983,7 +3991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2413673, y: -0.72702146, z: -9.492213}
+  m_LocalPosition: {x: -2.6314974, y: -0.72925735, z: -9.492213}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4101,7 +4109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8580715041245958794, guid: e7c300cc2535a944b9eb7ce39e8fa125, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7422549
+      value: 2.14
       objectReference: {fileID: 0}
     - target: {fileID: 8580715041245958794, guid: e7c300cc2535a944b9eb7ce39e8fa125, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4431,7 +4439,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1176390231
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5464,7 +5472,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1201708893
 MonoBehaviour:
@@ -5655,7 +5663,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1826807989
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: -5
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10988,7 +10996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093542902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.63355243, y: -1.3465967, z: 0.5077869}
+  m_LocalPosition: {x: 2.8664474, y: -0.09659672, z: 0.5077869}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11056,7 +11064,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -665913183
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1284364212, guid: 9e9e8b72ce1eba5429d2100aa4b2ee7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11082,8 +11090,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 352849980}
-  speed: 1000
-  nextWaypointDistance: 3
 --- !u!114 &2093542907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11141,7 +11147,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
+  m_LinearDrag: 100
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -11161,6 +11167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48130943d31724546868515a06a0abf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 100
+  _damage: 5
+  _speed: 8
+  _aggroRange: 7
+  _attackRange: 4
+  _attackInterval: 2
 --- !u!1001 &5876166265835152793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11168,17 +11181,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 399686797, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5876166266098440464, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
       propertyPath: m_Name
       value: TallCandelabra
       objectReference: {fileID: 0}
     - target: {fileID: 5876166266098440469, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5876166266098440469, guid: 2ac4ddde6ad395a4a823532f33508373, type: 3}
       propertyPath: m_LocalPosition.x

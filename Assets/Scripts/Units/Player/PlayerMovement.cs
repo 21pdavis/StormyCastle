@@ -2,17 +2,12 @@ using UnityEngine;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
-using UnityEngine.UIElements;
-using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
-
-    private Rigidbody2D characterBody;
+    private PlayerStats stats;
+    private Rigidbody2D rb;
     private Animator animator;
-    private Vector2 velocity;
     private Vector2 positionDelta;
     public ParticleSystem dust;
     public bool canMove;
@@ -21,11 +16,12 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stats = GetComponent<PlayerStats>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
         moving = false;
         canMove = true;
-        velocity = new Vector2(speed, speed);
-        characterBody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -61,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
         // move the player based on input and velocity
         FlipSprite(positionDelta, transform);
-        characterBody.MovePosition(characterBody.position + positionDelta);
+        rb.MovePosition(rb.position + positionDelta);
     }
 
     public void Move(CallbackContext context)
@@ -80,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             moving = Mathf.Abs(inputMovement.x) > 0 || Mathf.Abs(inputMovement.y) > 0;
 
             // update position delta based on input movement and movement speed (fixedDeltaTime because the movement is updated in FixedUpdate)
-            positionDelta = inputMovement * velocity * Time.fixedDeltaTime;
+            positionDelta = stats.speed * Time.fixedDeltaTime * inputMovement;
         }
     }
 

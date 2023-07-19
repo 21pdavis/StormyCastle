@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class UnitStats : MonoBehaviour
 {
-    private int _maxHealth = 100;
-    private int _currentHealth = 100;
-
+    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _currentHealth = 100;
     // Risk of Rain style damage, each unit has an assigned "damage" value and other damages are based on percentages of that
-    private int _damage = 5;
+    [SerializeField] private int _damage = 5;
+    [SerializeField] private float _speed = 5f;
 
     public virtual int maxHealth
     {
@@ -24,6 +24,12 @@ public abstract class UnitStats : MonoBehaviour
     {
         get { return _damage; }
         set { _damage = value; }
+    }
+
+    public virtual float speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
     }
 
     private void ModifyHealth(int delta)

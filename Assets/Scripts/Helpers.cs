@@ -50,18 +50,4 @@ static class Helpers
 
         source.volume = targetVolume;
     }
-
-    public static void AnimateMove(Animator animator, bool moving)
-    {
-        bool isRunning = animator.GetBool("isRunning");
-
-        if (moving && !isRunning)
-        {
-            animator.SetBool("isRunning", true);
-        }
-        else if (!moving && isRunning)
-        {
-            animator.SetBool("isRunning", false);
-        }
-    }
 }
