@@ -18,12 +18,29 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
     protected Rigidbody2D rb;
     protected Animator animator;
     protected EnemyStateMachine stateMachine;
+    protected LayerMask targetLayers;
 
     // current path we are following
     protected Path path;
     // current targeted waypoint on path
     protected bool reachedEndOfPath = false;
     protected bool moving;
+
+    protected virtual void Start()
+    {
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+        int layerNum = target.gameObject.layer;
+        targetLayers = 1 << layerNum;
+
+        stateMachine = new();
+        moving = false;
+
+        // invoke function UpdatePath every 0.5 seconds
+        InvokeRepeating(nameof(UpdatePath), 0f, .25f);
+    }
 
     // Tip: abstract means no implementation in base class, must be implemented in derived class, and virtual means there is a default implementation in base class but can be overridden in derived class
     // TODO: sightlines + aggro on being attacked
@@ -47,10 +64,9 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 
         // get vector in direction of next waypoint (vector subtraction, https://www.varsitytutors.com/hotmath/hotmath_help/topics/adding-and-subtracting-vectors)
 
-        // TODO: check for getting stuck on wall/environment collider
+        // TODO: check and account for getting stuck on wall/environment collider (maybe check for how far traveled in last movement?)
         if (Vector2.Distance(rb.position, (Vector2)path.vectorPath[currentWaypoint]) < stats.speed * Time.fixedDeltaTime)
         {
-            Debug.Log("too close, incrementing");
             currentWaypoint++;
         }
 
@@ -59,9 +75,14 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 
         if (positionDelta.magnitude > 0f)
         {
+            moving = true;
             FlipSprite(direction, transform);
             // push in direction and flip sprite
             rb.MovePosition(rb.position + positionDelta);
+        }
+        else
+        {
+            moving = false;
         }
     }
 
@@ -69,7 +90,7 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 
     public abstract void Flee();
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
 
@@ -81,26 +102,14 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, stats.attackRange);
 
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, stats.speed * Time.fixedDeltaTime * 50);
+        // the below two gizmo draws are for tracking current waypoint relative to current maximum move distance
+        //Gizmos.color = Color.magenta;
+        //Gizmos.DrawWireSphere(transform.position, stats.speed * Time.fixedDeltaTime * 50);
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(path.vectorPath[currentWaypoint], stats.speed * Time.fixedDeltaTime * 50);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawWireSphere(path.vectorPath[currentWaypoint], stats.speed * Time.fixedDeltaTime * 50);
 
         Gizmos.color = oldColor;
-    }
-
-    protected virtual void Start()
-    {
-        seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-
-        stateMachine = new();
-        moving = false;
-
-        // invoke function UpdatePath every 0.5 seconds
-        InvokeRepeating(nameof(UpdatePath), 0f, .25f);
     }
 
     protected virtual void Update()

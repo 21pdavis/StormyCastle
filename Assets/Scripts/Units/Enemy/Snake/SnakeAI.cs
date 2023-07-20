@@ -21,14 +21,17 @@ public class SnakeAI : EnemyAI<SnakeStats>
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
         }
 
+        moving = false;
+
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && Time.time >= lastAttackTime + stats.attackInterval)
         {
+            FlipSprite((Vector2)target.position - rb.position, transform);
             animator.SetTrigger("attackTrigger");
             lastAttackTime = Time.time;
         }
         else if (Time.time < lastAttackTime + stats.attackInterval)
         {
-
+            // TODO
         }
     }
 

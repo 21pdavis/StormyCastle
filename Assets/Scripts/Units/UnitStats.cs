@@ -7,6 +7,7 @@ public abstract class UnitStats : MonoBehaviour
     // Risk of Rain style damage, each unit has an assigned "damage" value and other damages are based on percentages of that
     [SerializeField] private int _damage = 5;
     [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _attackRange = 1f;
 
     public virtual int maxHealth
     {
@@ -30,6 +31,12 @@ public abstract class UnitStats : MonoBehaviour
     {
         get { return _speed; }
         set { _speed = value; }
+    }
+
+    public virtual float attackRange
+    {
+        get { return _attackRange; }
+        set { _attackRange = value; }
     }
 
     private void ModifyHealth(int delta)

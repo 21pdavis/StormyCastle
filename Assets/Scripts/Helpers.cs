@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 static class Helpers
@@ -49,5 +51,33 @@ static class Helpers
         }
 
         source.volume = targetVolume;
+    }
+
+    public static void MeleeAttack(Transform attacker, UnitStats attackerStats, LayerMask targetLayers)
+    {
+        // detect enemies in range of attack
+        List<Collider2D> hitTargets = Physics2D.OverlapCircleAll(attacker.position, attackerStats.attackRange, targetLayers)
+            .Where(collider =>
+            {
+                // only hit enemies in the direction of the attack in a semicircle
+                if (attacker.localScale.x < 0)
+                {
+                    return collider.transform.position.x <= attacker.position.x;
+                }
+                return collider.transform.position.x > attacker.position.x;
+            })
+            .ToList();
+
+        foreach (var target in hitTargets)
+        {
+            var targetStats = target.GetComponent<UnitStats>();
+
+            // get player's damage value
+            int damageDealt = attackerStats.damage;
+
+            // actually deal damage
+            targetStats.TakeDamage(damageDealt);
+            Debug.Log($"Hit {target.name}, its health was {targetStats.currentHealth + damageDealt} and is now {targetStats.currentHealth}");
+        }
     }
 }

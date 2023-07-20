@@ -3,19 +3,12 @@ using UnityEngine;
 public abstract class EnemyStats : UnitStats
 {
     [SerializeField] private float _aggroRange = 5;
-    [SerializeField] private float _attackRange = 1;
     [SerializeField] private float _attackInterval = 2;
 
     public virtual float aggroRange
     {
         get { return _aggroRange; }
         set { _aggroRange = value; }
-    }
-
-    public virtual float attackRange
-    {
-        get { return _attackRange; }
-        set { _attackRange = value; }
     }
 
     /// <summary>

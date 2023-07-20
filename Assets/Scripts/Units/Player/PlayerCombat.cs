@@ -1,22 +1,37 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
-    private PlayerStats playerStats;
+    private PlayerStats stats;
 
-    public Transform attackPoint;
-    public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        playerStats = GetComponent<PlayerStats>();
+        stats = GetComponent<PlayerStats>();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+
+        // create a semi-circle hitbox in front of the orc
+        Color oldHandlesColor = Handles.color;
+
+        Color newColor = Color.red; newColor.a = 0.05f;
+        Handles.color = newColor;
+        Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
+
+        Handles.color = oldHandlesColor;
+
     }
 
     public void Attack(CallbackContext context)
@@ -34,20 +49,7 @@ public class PlayerCombat : MonoBehaviour
             Vector2 directionFromCharacter = (projectedMousePos - new Vector2(transform.position.x, transform.position.y)).normalized;
             FlipSprite(directionFromCharacter, transform);
 
-            // detect enemies in range of attack
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-            foreach (var enemy in hitEnemies)
-            {
-                var enemyStats = enemy.GetComponent<EnemyStats>();
-
-                // get player's damage value
-                int damageDealt = playerStats.damage;
-
-                // actually deal damage
-                enemyStats.TakeDamage(damageDealt);
-                Debug.Log($"Hit {enemy.name}, its health was {enemyStats.currentHealth + damageDealt} and is now {enemyStats.currentHealth}");
-            }
+            MeleeAttack(transform, stats, enemyLayers);
         }
     }
 }
