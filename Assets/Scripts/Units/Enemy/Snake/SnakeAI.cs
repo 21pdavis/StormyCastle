@@ -28,6 +28,18 @@ public class SnakeAI : EnemyAI<SnakeStats>
             FlipSprite((Vector2)target.position - rb.position, transform);
             animator.SetTrigger("attackTrigger");
             lastAttackTime = Time.time;
+
+            // spawn and shoot projectile
+            Transform shootPoint = transform.Find("ShootPoint");
+            Quaternion towardsTarget = Quaternion.LookRotation(Vector3.forward, target.position - shootPoint.position);
+            GameObject projectile = Instantiate(stats.projectile, shootPoint.position, towardsTarget);
+            ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+
+            projectileController.ShooterStats = stats;
+            projectileController.TargetStats = target.GetComponent<UnitStats>();
+            Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+            Vector2 direction = target.position - transform.position;
+            projectileRb.velocity = direction.normalized * projectile.GetComponent<ProjectileController>().speed;
         }
         else if (Time.time < lastAttackTime + stats.attackInterval)
         {

@@ -1,7 +1,9 @@
+using UnityEngine;
+
 public class SnakeStats : EnemyStats
 {
-    protected override void Die()
-    {
-        // TODO
-    }
+    /// <summary>
+    /// prefab for the projectile to be fired
+    /// </summary>
+    public GameObject projectile;
 }

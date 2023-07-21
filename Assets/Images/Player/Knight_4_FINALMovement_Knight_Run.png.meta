@@ -117,169 +117,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_0
+      name: Knight_4_FINALMovement_Knight_Run_0
       rect:
         serializedVersion: 2
         x: 77
         y: 4
         width: 40
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11481987c13b1db4294f9a920a77cdeb
-      internalID: -2108473357
+      spriteID: bbe19af32e4aedb48bc43952fc9f86ab
+      internalID: -560001534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_1
+      name: Knight_4_FINALMovement_Knight_Run_1
       rect:
         serializedVersion: 2
         x: 144
         y: 4
         width: 33
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8b229423133eea4c85c31b2b9043996
-      internalID: -846983301
+      spriteID: e3f50895ad2f9b54faff6b53da439a19
+      internalID: 1578656042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_2
+      name: Knight_4_FINALMovement_Knight_Run_2
       rect:
         serializedVersion: 2
         x: 208
         y: 4
         width: 34
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8e1fa021b8e342469f15a5f0148dc26
-      internalID: 1011313565
+      spriteID: dfbf485f4c8642f4999a0a377b938b8e
+      internalID: 2045966295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_3
+      name: Knight_4_FINALMovement_Knight_Run_3
       rect:
         serializedVersion: 2
         x: 268
         y: 4
         width: 30
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 715a8c42b1af6fb46ac30f802706a916
-      internalID: 1849927468
+      spriteID: 7f8957df6483c214fac4e4c77cd87bc9
+      internalID: -1101644599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_4
+      name: Knight_4_FINALMovement_Knight_Run_4
       rect:
         serializedVersion: 2
         x: 333
         y: 4
         width: 33
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71d1c104743b69844aeebd98aa5a3aef
-      internalID: 1340804050
+      spriteID: 192e8b9bfcf779a48bda7eb85735e1c8
+      internalID: 1718931295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_5
+      name: Knight_4_FINALMovement_Knight_Run_5
       rect:
         serializedVersion: 2
         x: 400
         y: 4
         width: 26
         height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef41799a4123f5a4fa7a4bdabfd8e4f6
-      internalID: 1444151770
+      spriteID: 301f94bb85081bc4e900161ff00a427a
+      internalID: 1702446982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_6
+      name: Knight_4_FINALMovement_Knight_Run_6
       rect:
         serializedVersion: 2
         x: 464
         y: 4
         width: 34
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04e2c4cc610d9724ea11ffc7cbf76734
-      internalID: 448904332
+      spriteID: 6762f154fb090544eb0d6be90aeeaf16
+      internalID: 1162233079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Knight_4_FINALMovement_Animation-Sheet_7
+      name: Knight_4_FINALMovement_Knight_Run_7
       rect:
         serializedVersion: 2
         x: 523
         y: 4
         width: 38
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2258e0b810981c845a2ac19519cc607f
-      internalID: 1459208707
+      spriteID: def8f075d6afcdf448151280f6f66e84
+      internalID: -910327873
       vertices: []
       indices: 
       edges: []
@@ -295,14 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Knight_4_FINALMovement_Animation-Sheet_0: -2108473357
-      Knight_4_FINALMovement_Animation-Sheet_1: -846983301
-      Knight_4_FINALMovement_Animation-Sheet_2: 1011313565
-      Knight_4_FINALMovement_Animation-Sheet_3: 1849927468
-      Knight_4_FINALMovement_Animation-Sheet_4: 1340804050
-      Knight_4_FINALMovement_Animation-Sheet_5: 1444151770
-      Knight_4_FINALMovement_Animation-Sheet_6: 448904332
-      Knight_4_FINALMovement_Animation-Sheet_7: 1459208707
+      Knight_4_FINALMovement_Knight_Run_0: -560001534
+      Knight_4_FINALMovement_Knight_Run_1: 1578656042
+      Knight_4_FINALMovement_Knight_Run_2: 2045966295
+      Knight_4_FINALMovement_Knight_Run_3: -1101644599
+      Knight_4_FINALMovement_Knight_Run_4: 1718931295
+      Knight_4_FINALMovement_Knight_Run_5: 1702446982
+      Knight_4_FINALMovement_Knight_Run_6: 1162233079
+      Knight_4_FINALMovement_Knight_Run_7: -910327873
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -80,4 +80,9 @@ static class Helpers
             Debug.Log($"Hit {target.name}, its health was {targetStats.currentHealth + damageDealt} and is now {targetStats.currentHealth}");
         }
     }
+
+    public static Vector3 Rotate90(Vector3 vector)
+    {
+        return new Vector3(-vector.y, vector.x, vector.z);
+    }
 }
