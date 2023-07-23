@@ -64,10 +64,6 @@ public class StateManager : MonoBehaviour
                 break;
             case GameState.Playing:
                 // Resume gameplay
-                // TODO: Maybe make a more robust DebugSetup function if I need to do more functions here
-                Image blackScreen = GameObject.Find("Black Cover").GetComponent<Image>();
-                blackScreen.color = new Color(0f, 0f, 0f, 0f);
-
                 Time.timeScale = 1f;
                 break;
         }
