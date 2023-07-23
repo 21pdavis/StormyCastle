@@ -30,7 +30,7 @@ public class StateManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            SetState(GameState.MainMenu);
+            SetState(GameState.Playing);
         }
         else
         {
