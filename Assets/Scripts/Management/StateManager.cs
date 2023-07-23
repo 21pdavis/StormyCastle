@@ -30,25 +30,12 @@ public class StateManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            SetState(GameState.Playing);
+            SetState(GameState.MainMenu);
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Update()
-    {
-        //if (SceneManager.GetActiveScene().name == "Game" && vcam == null)
-        //{
-        //    vcam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera as CinemachineVirtualCamera;
-        //    if (vcam == null)
-        //        return;
-
-        //    vcam.m_Lens.OrthographicSize = 4f;
-        //    Camera.main.orthographicSize = 4f;
-        //}
     }
 
     public void SetState(GameState newState)

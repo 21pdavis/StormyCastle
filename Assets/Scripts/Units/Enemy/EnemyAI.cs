@@ -28,6 +28,12 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 
     protected virtual void Start()
     {
+        if (target == null)
+        {
+            GameObject player = GameObject.Find("Player");
+            target = player.transform;
+        }
+
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -48,7 +54,6 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
     {
         if (Vector3.Distance(transform.position, target.position) < stats.aggroRange)
         {
-            Debug.Log($"Patrol: switching {name} to chasing");
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
         }
     }
