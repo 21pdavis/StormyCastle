@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _currentHealth: 100
-  _damage: 5
+  _damage: 25
   _speed: 2
   _attackRange: 4
   _aggroRange: 7
