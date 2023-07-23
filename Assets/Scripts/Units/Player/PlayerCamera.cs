@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     Camera cam;
-    CinemachineVirtualCamera virtualCam;
+    CinemachineVirtualCamera virtualCam; // to manipulate the camera's size/tracking target
+    CinemachineFramingTransposer transposer; // to manipulate the camera's position
 
     void Start()
     {
@@ -13,16 +14,31 @@ public class PlayerCamera : MonoBehaviour
         StartCoroutine(WaitForCameraInitialization());
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (virtualCam != null)
+        if (collision.CompareTag("Room"))
         {
-            // virtualCam.m_Lens.OrthographicSize = 1;
+            //virtualCam.m_Lens.OrthographicSize = 1;
+            virtualCam.Follow = collision.transform;
+            virtualCam.LookAt = collision.transform;
+            transposer.m_TrackedObjectOffset = new Vector3(0f, 0f, 0f);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Room"))
+        {
+            //virtualCam.m_Lens.OrthographicSize = 1;
+            virtualCam.Follow = transform;
+            virtualCam.LookAt = transform;
+            transposer.m_TrackedObjectOffset = new Vector3(0, 0.5f, 0);
         }
     }
 
     private IEnumerator WaitForCameraInitialization()
     {
+        // Cinemachine camera is initialized after the first frame, so we wait for the end of the first frame before we try to access it
         yield return new WaitForEndOfFrame();
 
         CinemachineBrain brain = cam.GetComponent<CinemachineBrain>();
@@ -30,6 +46,7 @@ public class PlayerCamera : MonoBehaviour
         if (brain != null && brain.ActiveVirtualCamera != null)
         {
             virtualCam = brain.ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+            transposer = virtualCam.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
     }
 }
