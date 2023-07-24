@@ -9,6 +9,8 @@ TagManager:
   - Environment Object
   - Enemy
   - Room
+  - Overlays
+  - Room Group
   layers:
   - Default
   - TransparentFX

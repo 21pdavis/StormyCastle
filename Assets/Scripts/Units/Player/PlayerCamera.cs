@@ -27,11 +27,12 @@ public class PlayerCamera : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Room"))
+        if (other.CompareTag("Room Group"))
         {
             //virtualCam.m_Lens.OrthographicSize = 1;
             virtualCam.Follow = transform;
             virtualCam.LookAt = transform;
+            // offset of player is slightly up because player Transform is anchored to bottom of sprite and that's where camera focuses
             transposer.m_TrackedObjectOffset = new Vector3(0, 0.5f, 0);
         }
     }
