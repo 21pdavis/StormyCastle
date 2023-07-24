@@ -29028,6 +29028,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3891833956754906986, guid: 9d69f2b4f9d94b54a9dcc89fbd9309ef, type: 3}
   m_PrefabInstance: {fileID: 3891833957662998474}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2120474785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2120474788, guid: 9d69f2b4f9d94b54a9dcc89fbd9309ef, type: 3}
+  m_PrefabInstance: {fileID: 3891833957662998474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5993a78c417001b418602ee4cd8f68a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1714797723227004992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29100,6 +29111,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1865220158}
     m_Modifications:
+    - target: {fileID: 714585462, guid: 9d69f2b4f9d94b54a9dcc89fbd9309ef, type: 3}
+      propertyPath: m_text
+      value: E
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363588515, guid: 9d69f2b4f9d94b54a9dcc89fbd9309ef, type: 3}
+      propertyPath: m_text
+      value: E
+      objectReference: {fileID: 0}
     - target: {fileID: 3891833956754906964, guid: 9d69f2b4f9d94b54a9dcc89fbd9309ef, type: 3}
       propertyPath: m_Name
       value: Old Man
@@ -29146,10 +29165,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3891833956754906986, guid: 9d69f2b4f9d94b54a9dcc89fbd9309ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6187165976390762797, guid: 9d69f2b4f9d94b54a9dcc89fbd9309ef, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -29314,22 +29329,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_ActionId
       value: a9e61470-4066-458d-86f6-203c076fd251
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 4ad9cd70-82eb-4306-939d-4f252feae628
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_ActionName
       value: Player/Interact[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: Player/UI Update[/Keyboard/anyKey,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStickPress,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right,/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStickPress,/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/select,/DualShock4GamepadHID/start]
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2120474785}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnControlsChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
@@ -29337,7 +29388,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1708325491}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2120474785}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
@@ -29345,11 +29404,31 @@ PrefabInstance:
       value: Interact
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnControlsChanged
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OldManController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerMovement, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: OldManController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6754503349718047064, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6754503349718047066, guid: 7226a933966c1654998e438f20cf5ff7, type: 3}
