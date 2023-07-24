@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 
 using static Helpers;
 
@@ -11,6 +10,7 @@ public class OrcAI : EnemyAI<OrcStats>
         stats = GetComponent<OrcStats>();
     }
 
+#if UNITY_EDITOR
     protected override void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
@@ -18,14 +18,15 @@ public class OrcAI : EnemyAI<OrcStats>
         base.OnDrawGizmos();
 
         // create a semi-circle hitbox in front of the orc
-        Color oldHandlesColor = Handles.color;
+        Color oldHandlesColor = UnityEditor.Handles.color;
 
         Color newColor = Color.red; newColor.a = 0.05f;
-        Handles.color = newColor;
-        Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
+        UnityEditor.Handles.color = newColor;
+        UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
 
-        Handles.color = oldHandlesColor;
+        UnityEditor.Handles.color = oldHandlesColor;
     }
+#endif
 
     public override void Attack()
     {

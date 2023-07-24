@@ -11,6 +11,7 @@ TagManager:
   - Room
   - Overlays
   - Room Group
+  - NPC
   layers:
   - Default
   - TransparentFX

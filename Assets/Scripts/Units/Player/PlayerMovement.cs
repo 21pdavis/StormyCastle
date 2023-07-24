@@ -13,6 +13,21 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove;
     public bool moving;
 
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        Color oldColor = Gizmos.color;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, stats.interactRange);
+
+        Gizmos.color = oldColor;
+    }
+#endif
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,8 +95,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Roll(CallbackContext context)
+    public void Slide(CallbackContext context)
     {
         // TODO
+    }
+
+    // TODO: maybe move this into separate class?
+    public void Interact(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, stats.interactRange);
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.CompareTag("NPC"))
+                {
+                    collider.GetComponent<NPCController>().OnInteract();
+                }
+            }
+        }
     }
 }

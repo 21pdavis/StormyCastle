@@ -4,8 +4,9 @@ public class PlayerStats : UnitStats
 {
     [SerializeField] private ManaBar manaBar;
 
-    private int _maxMana = 5;
-    private int _currentMana = 5;
+    [SerializeField] private float _interactRange = 1.5f;
+    [SerializeField] private int _maxMana = 5;
+    [SerializeField] private int _currentMana = 5;
 
     public int maxMana
     {
@@ -17,6 +18,12 @@ public class PlayerStats : UnitStats
     {
         get { return _currentMana; }
         set { _currentMana = value; }
+    }
+
+    public float interactRange
+    {
+        get { return _interactRange; }
+        set { _interactRange = value; }
     }
 
     private void ModifyMana(int delta)

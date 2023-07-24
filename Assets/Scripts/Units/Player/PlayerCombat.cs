@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEditor;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
-using UnityEditor.Experimental.GraphView;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -19,20 +17,22 @@ public class PlayerCombat : MonoBehaviour
         stats = GetComponent<PlayerStats>();
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
 
         // create a semi-circle hitbox in front of the orc
-        Color oldHandlesColor = Handles.color;
+        Color oldHandlesColor = UnityEditor.Handles.color;
 
         Color newColor = Color.red; newColor.a = 0.05f;
-        Handles.color = newColor;
-        Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
+        UnityEditor.Handles.color = newColor;
+        UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
 
-        Handles.color = oldHandlesColor;
+        UnityEditor.Handles.color = oldHandlesColor;
 
     }
+#endif
 
     public void Attack(CallbackContext context)
     {
