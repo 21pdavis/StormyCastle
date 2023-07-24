@@ -57,6 +57,7 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
         }
     }
+
     public virtual void Chase()
     {
         if (Vector3.Distance(transform.position, target.position) < stats.attackRange)

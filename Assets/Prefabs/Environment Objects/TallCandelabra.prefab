@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 5876166266098440469}
   - component: {fileID: 5876166266098440466}
   - component: {fileID: 399686797}
-  - component: {fileID: 399686798}
+  - component: {fileID: 1469461127}
   m_Layer: 7
   m_Name: TallCandelabra
   m_TagString: Environment Object
@@ -219,8 +219,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &399686798
-BoxCollider2D:
+--- !u!70 &1469461127
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -232,16 +232,6 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0134990215, y: -0.47246635}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1.5}
-    newSize: {x: 1, y: 1.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.46003866, y: 0.5550673}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.4969635}
+  m_Size: {x: 0.4072914, y: 0.506073}
+  m_Direction: 0

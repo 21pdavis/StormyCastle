@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class UnitStats : MonoBehaviour
 {
+    [SerializeField] private HealthBar healthBar;
+
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private int _currentHealth = 100;
     // Risk of Rain style damage, each unit has an assigned "damage" value and other damages are based on percentages of that
@@ -48,6 +50,7 @@ public abstract class UnitStats : MonoBehaviour
     public virtual void TakeDamage(int amount)
     {
         ModifyHealth(-amount);
+        healthBar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -58,6 +61,7 @@ public abstract class UnitStats : MonoBehaviour
     public virtual void Heal(int amount)
     {
         ModifyHealth(amount);
+        healthBar.SetHealth(currentHealth);
     }
 
     protected virtual void Die()

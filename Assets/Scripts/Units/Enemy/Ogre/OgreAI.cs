@@ -28,6 +28,15 @@ public class OgreAI : EnemyAI<OgreStats>
         Handles.color = oldHandlesColor;
     }
 
+    public override void Patrol()
+    {
+        if (Vector3.Distance(transform.position, target.position) < stats.aggroRange)
+        {
+            stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
+            transform.Find("Canvas").gameObject.SetActive(true);
+        }
+    }
+
     public override void Attack()
     {
         if (

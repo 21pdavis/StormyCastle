@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerStats : UnitStats
 {
-    [SerializeField] private HealthBar healthBar;
     [SerializeField] private ManaBar manaBar;
 
     private int _maxMana = 5;
@@ -18,18 +17,6 @@ public class PlayerStats : UnitStats
     {
         get { return _currentMana; }
         set { _currentMana = value; }
-    }
-
-    public override void TakeDamage(int amount)
-    {
-        base.TakeDamage(amount);
-        healthBar.SetHealth(currentHealth);
-    }
-
-    public override void Heal(int amount)
-    {
-        base.Heal(amount);
-        healthBar.SetHealth(currentHealth);
     }
 
     private void ModifyMana(int delta)
