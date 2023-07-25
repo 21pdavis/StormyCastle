@@ -6,6 +6,7 @@ using static Helpers;
 public class OgreAI : EnemyAI<OgreStats>
 {
     // TODO: not efficient, just leaving this note everywhere to remind myself to make a music manager script
+    private AudioSource roarSource;
     private GameObject bossMusicObject;
 
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class OgreAI : EnemyAI<OgreStats>
         base.Start();
         stats = GetComponent<OgreStats>();
 
+        roarSource = GetComponent<AudioSource>();
         bossMusicObject = GameObject.Find("Boss Music");
     }
 
@@ -79,7 +81,9 @@ public class OgreAI : EnemyAI<OgreStats>
     // TODO: this is a hacky way to delay the attack, but it works for now
     private IEnumerator DelayedAttack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
+        roarSource.Play();
+        yield return new WaitForSeconds(0.25f);
         MeleeAttack(transform, stats, targetLayers, pushForce: 20f);
         lastAttackTime = Time.time;
     }
