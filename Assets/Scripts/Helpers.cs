@@ -53,7 +53,7 @@ static class Helpers
         source.volume = targetVolume;
     }
 
-    public static void MeleeAttack(Transform attacker, UnitStats attackerStats, LayerMask targetLayers)
+    public static void MeleeAttack(Transform attacker, UnitStats attackerStats, LayerMask targetLayers, float pushForce=0f)
     {
         // detect enemies in range of attack
         List<Collider2D> hitTargets = Physics2D.OverlapCircleAll(attacker.position, attackerStats.attackRange, targetLayers)
@@ -74,6 +74,16 @@ static class Helpers
 
             // get player's damage value
             int damageDealt = attackerStats.damage;
+
+            if (pushForce > 0f)
+            {
+                Vector2 pushDirection = (Vector2)target.transform.position - (Vector2)attacker.position;
+
+                if (target.CompareTag("Player"))
+                {
+                    target.GetComponent<PlayerMovement>().Knockback(pushDirection.normalized * pushForce);
+                }
+            }
 
             // actually deal damage
             targetStats.TakeDamage(damageDealt);

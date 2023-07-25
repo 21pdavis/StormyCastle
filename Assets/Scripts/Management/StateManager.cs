@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 using static Helpers;
 
@@ -65,6 +64,7 @@ public class StateManager : MonoBehaviour
             case GameState.Playing:
                 // Resume gameplay
                 Time.timeScale = 1f;
+                GameObject.Find("Castle Music").GetComponent<AudioSource>().Play();
                 break;
         }
     }

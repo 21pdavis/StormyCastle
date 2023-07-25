@@ -61,11 +61,11 @@ TagManager:
   - name: Grass
     uniqueID: 3498370573
     locked: 0
-  - name: Enemy
-    uniqueID: 3629054113
-    locked: 0
   - name: Character
     uniqueID: 2468159307
+    locked: 0
+  - name: Enemy
+    uniqueID: 3629054113
     locked: 0
   - name: Projectile
     uniqueID: 950023801

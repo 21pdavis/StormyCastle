@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 using static Helpers;
@@ -44,6 +45,12 @@ public class OgreAI : EnemyAI<OgreStats>
             Vector3.Distance(transform.position, target.position) > stats.attackRange
             &&
             Vector3.Distance(transform.position, target.position) < stats.aggroRange
+            &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Pre Damage")
+            &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Damage")
+            &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Post Damage")
         )
         {
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
@@ -51,18 +58,24 @@ public class OgreAI : EnemyAI<OgreStats>
 
         moving = false;
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && Time.time > lastAttackTime + stats.attackInterval)
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack Pre Damage") && Time.time > lastAttackTime + stats.attackInterval)
         {
-            FlipSprite((Vector2)target.position - rb.position, transform);
             animator.SetTrigger("attackTrigger");
-            lastAttackTime = Time.time;
-
-            MeleeAttack(transform, stats, targetLayers);
+            StartCoroutine(DelayedAttack());
+            FlipSprite((Vector2)target.position - rb.position, transform);
         }
         else if (Time.time < lastAttackTime + stats.attackInterval)
         {
             // TODO
         }
+    }
+
+    // TODO: this is a hacky way to delay the attack, but it works for now
+    private IEnumerator DelayedAttack()
+    {
+        yield return new WaitForSeconds(1f);
+        MeleeAttack(transform, stats, targetLayers, pushForce: 20f);
+        lastAttackTime = Time.time;
     }
 
     public override void Flee()

@@ -5,7 +5,7 @@ public class ProjectileController : MonoBehaviour
     public UnitStats ShooterStats { get; set; }
     public UnitStats TargetStats { get; set; }
     public float speed = 5f;
-    public float impulseForce = 100f;
+    public float impulseForce = 5f;
 
     private Rigidbody2D rb;
 

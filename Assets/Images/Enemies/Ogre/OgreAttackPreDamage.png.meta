@@ -1,0 +1,399 @@
+fileFormatVersion: 2
+guid: 8856fa771e9f5d2488d766e31db0e4f4
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_0
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 65
+        width: 39
+        height: 73
+      alignment: 9
+      pivot: {x: 0.20512821, y: 0.4109589}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5818f368bc365774892d9d07c0c72e5f
+      internalID: -950876450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_1
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 65
+        width: 48
+        height: 77
+      alignment: 9
+      pivot: {x: 0.1875, y: 0.38961038}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea1eaf5662fc2b541b26ab35bddf271b
+      internalID: 1902223062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_2
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 65
+        width: 54
+        height: 82
+      alignment: 9
+      pivot: {x: 0.35185185, y: 0.36585364}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c0ae501ec9ce54ea206313e011b76a
+      internalID: -1710924226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_3
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 65
+        width: 68
+        height: 81
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.3703704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffa226203c3eb644cafaa3ce7bc6e345
+      internalID: -1117270245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_4
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 65
+        width: 63
+        height: 79
+      alignment: 9
+      pivot: {x: 0.53968257, y: 0.37974685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68f1d0845627dd7458c547504c931d0c
+      internalID: -1866862234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_5
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 65
+        width: 52
+        height: 81
+      alignment: 9
+      pivot: {x: 0.6923077, y: 0.3703704}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796b7c88c33b69b41a62a4fe79979348
+      internalID: -1037493739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_6
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 65
+        width: 55
+        height: 79
+      alignment: 9
+      pivot: {x: 0.7272727, y: 0.37974685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42493f4b7d072947a8eeee965ba12a4
+      internalID: 83371532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_7
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 65
+        width: 57
+        height: 79
+      alignment: 9
+      pivot: {x: 0.7368421, y: 0.37974685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbbd3446bc3fb19468e2c0dd96a50424
+      internalID: -2121552368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_8
+      rect:
+        serializedVersion: 2
+        x: 1397
+        y: 65
+        width: 57
+        height: 79
+      alignment: 9
+      pivot: {x: 0.7368421, y: 0.37974685}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90d9ae8f838191a4cb719cc0f622d32f
+      internalID: -1529027138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_9
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 65
+        width: 58
+        height: 77
+      alignment: 9
+      pivot: {x: 0.7413793, y: 0.4025974}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae0deec7171a504a8cc6f6013f5b4d1
+      internalID: -137885488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_10
+      rect:
+        serializedVersion: 2
+        x: 1736
+        y: 65
+        width: 58
+        height: 78
+      alignment: 9
+      pivot: {x: 0.7413793, y: 0.3974359}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fab824cbcb9bb6647ad9b5b2403e421e
+      internalID: 370281440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OgreAttackPreDamage_11
+      rect:
+        serializedVersion: 2
+        x: 1924
+        y: 65
+        width: 45
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5777778, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5777dc7cb3d56458cd2651949540e0
+      internalID: -1294609507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      OgreAttackPreDamage_0: -950876450
+      OgreAttackPreDamage_1: 1902223062
+      OgreAttackPreDamage_10: 370281440
+      OgreAttackPreDamage_11: -1294609507
+      OgreAttackPreDamage_2: -1710924226
+      OgreAttackPreDamage_3: -1117270245
+      OgreAttackPreDamage_4: -1866862234
+      OgreAttackPreDamage_5: -1037493739
+      OgreAttackPreDamage_6: 83371532
+      OgreAttackPreDamage_7: -2121552368
+      OgreAttackPreDamage_8: -1529027138
+      OgreAttackPreDamage_9: -137885488
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -67,12 +67,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMove()
     {
-        if (!canMove)
+        if (!canMove || rb.velocity.magnitude > 0.4f) // knockback velocity check
             return;
 
         // move the player based on input and velocity
         FlipSprite(positionDelta, transform);
         rb.MovePosition(rb.position + positionDelta);
+    }
+
+    public void Knockback(Vector2 force)
+    {
+        canMove = false;
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
 
     public void Move(CallbackContext context)

@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
     private PlayerStats stats;
+    private Rigidbody2D rb;
 
     public LayerMask enemyLayers;
 
@@ -15,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         stats = GetComponent<PlayerStats>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
 #if UNITY_EDITOR
@@ -36,7 +38,8 @@ public class PlayerCombat : MonoBehaviour
 
     public void Attack(CallbackContext context)
     {
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && context.performed)
+        //! rb velocity check for monster knockback, should probably be moved to a separate check/bool flag
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && context.performed && !(rb.velocity.magnitude > 0.2f))
         {
             // play attack animation
             animator.SetTrigger("attackTrigger");

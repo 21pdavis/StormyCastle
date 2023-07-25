@@ -34,6 +34,8 @@ public class OrcAI : EnemyAI<OrcStats>
             Vector3.Distance(transform.position, target.position) > stats.attackRange
             &&
             Vector3.Distance(transform.position, target.position) < stats.aggroRange
+            &&
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack")
         )
         {
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
