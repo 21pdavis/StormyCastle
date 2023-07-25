@@ -64,7 +64,6 @@ public class StateManager : MonoBehaviour
             case GameState.Playing:
                 // Resume gameplay
                 Time.timeScale = 1f;
-                GameObject.Find("Castle Music").GetComponent<AudioSource>().Play();
                 break;
         }
     }

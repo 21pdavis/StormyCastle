@@ -5,11 +5,16 @@ using static Helpers;
 
 public class OgreAI : EnemyAI<OgreStats>
 {
+    // TODO: not efficient, just leaving this note everywhere to remind myself to make a music manager script
+    private GameObject bossMusicObject;
+
     // Start is called before the first frame update
     override protected void Start()
     {
         base.Start();
         stats = GetComponent<OgreStats>();
+
+        bossMusicObject = GameObject.Find("Boss Music");
     }
 
 #if UNITY_EDITOR
@@ -36,6 +41,7 @@ public class OgreAI : EnemyAI<OgreStats>
         {
             stateMachine.SetState(EnemyStateMachine.EnemyState.Chasing);
             transform.Find("Canvas").gameObject.SetActive(true);
+            SwitchMusic(bossMusicObject.name, bossMusicObject.GetComponent<AudioSource>());
         }
     }
 

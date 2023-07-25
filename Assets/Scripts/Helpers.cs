@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mono.Cecil;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -94,5 +95,28 @@ static class Helpers
     public static Vector3 Rotate90(Vector3 vector)
     {
         return new Vector3(-vector.y, vector.x, vector.z);
+    }
+
+    // TODO: TEMPORARY, really not efficient, but also not triggered enough for it to be too bad
+    public static void SwitchMusic(string musicObjectName, AudioSource source)
+    {
+        // stop current music
+        List<string> songNames = (new string[] { "Outside Music", "Castle Music", "Boss Music" })
+            .Where(name => name.CompareTo(musicObjectName) != 0)
+            .ToList();
+        foreach (string songName in songNames)
+        {
+            GameObject obj = GameObject.Find(songName);
+            if (obj != null)
+            {
+                if (obj.TryGetComponent<AudioSource>(out var musicSource))
+                {
+                    musicSource.Stop();
+                }
+            }
+        }
+
+        // play new music
+        source.Play();
     }
 }
