@@ -39,7 +39,7 @@ public class PlayerCombat : MonoBehaviour
     public void Attack(CallbackContext context)
     {
         //! rb velocity check for monster knockback, should probably be moved to a separate check/bool flag
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && context.performed && !(rb.velocity.magnitude > 0.2f))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && context.performed && !(rb.velocity.magnitude > 0.4f))
         {
             // play attack animation
             animator.SetTrigger("attackTrigger");
