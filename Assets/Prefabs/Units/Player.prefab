@@ -4918,13 +4918,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6754503349718047066
 CapsuleCollider2D:
@@ -4939,8 +4939,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.063531995, y: 0.2621535}
-  m_Size: {x: 0.56706405, y: 0.56706405}
+  m_Offset: {x: -0.038772106, y: -0.2633667}
+  m_Size: {x: 0.38549137, y: 0.4950409}
   m_Direction: 0
 --- !u!114 &6754503349718047012
 MonoBehaviour:
@@ -4954,13 +4954,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7fa2cee75495949a59c61945795124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   _maxHealth: 100
   _currentHealth: 100
   _damage: 50
   _speed: 4.5
   _attackRange: 1
-  healthBar: {fileID: 0}
   manaBar: {fileID: 0}
+  _interactRange: 1.5
+  _maxMana: 5
+  _currentMana: 5
+  _healAmount: 5
+  _healCost: 1
+  _healInterval: 2
+  healParticles: {fileID: 0}
 --- !u!114 &6754503349718047070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5149,6 +5156,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 90a2f5ae-faf0-4d94-9fb7-167e49633316
     m_ActionName: Player/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6754503349718047070}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a9e61470-4066-458d-86f6-203c076fd251
+    m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: OldManController, Assembly-CSharp
+        m_MethodName: OnControlsChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4ad9cd70-82eb-4306-939d-4f252feae628
+    m_ActionName: Player/UI Update[/Keyboard/anyKey,/DualShock4GamepadHID/dpad/down,/DualShock4GamepadHID/dpad/left,/DualShock4GamepadHID/dpad/right,/DualShock4GamepadHID/dpad/up,/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/leftStickPress,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/rightStick/right,/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/rightStickPress,/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/select,/DualShock4GamepadHID/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 48fb9369-8a44-40cc-8ba1-0610371f1f06
+    m_ActionName: Player/Heal[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

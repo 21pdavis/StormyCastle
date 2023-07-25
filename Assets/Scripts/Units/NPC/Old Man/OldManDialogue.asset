@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: OldManDialogue
   m_EditorClassIdentifier: 
   dialogueLines:
-  - 'Ho, there, good sir! This is the first line of the test dialogue
-
-    And this
-    is the second!'
-  - Here's the next line
-  - And another!
+  - "Greetings knight, you look like you aren't from around. Or at least not for
+    a long time...\r"
+  - Well, this here is Commander Bahram's Fortress, which acts as the only boundary
+    between The Kingdom and the deep woods.
+  - I left an item of mine here but it seems they are now under new management and
+    don't seem to recognize me anymore.
+  - Do you think a knight such as yourself could persuade a fellow man-at-arms to
+    let you go and retrieve it for me?
+  - "Great! I Thank You! I was worried that bell was a malfunction in my limbic system,
+    but it appears it was an omen of my good fortune!\r"

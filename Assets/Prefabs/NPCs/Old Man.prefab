@@ -607,7 +607,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000017583, y: -1.4731}
+  m_AnchoredPosition: {x: -0.05, y: -1.344}
   m_SizeDelta: {x: 0.5592, y: 0.5592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2256202005168804582
@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 2120474786}
   - component: {fileID: 2120474787}
   - component: {fileID: 2120474788}
+  - component: {fileID: 2145313852}
   m_Layer: 0
   m_Name: Old Man
   m_TagString: NPC
@@ -763,7 +764,7 @@ SpriteRenderer:
   m_SortingLayerID: -1826807989
   m_SortingLayer: 5
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 00d03c8152a9ef748a9a2e2f534ddecd, type: 3}
+  m_Sprite: {fileID: 1086304323, guid: a7322b7524c4c4540a1ddc7f5852c607, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -787,18 +788,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.002483517, y: 0.002483368}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.75, y: 0.84375}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7864153, y: 0.8956909}
   m_EdgeRadius: 0
 --- !u!50 &2120474787
 Rigidbody2D:
@@ -834,6 +835,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 8c9f6a04ac200b24fbbb2bc3949472f7, type: 2}
+--- !u!95 &2145313852
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3891833956754906964}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 412eafc9221fa284e94817b3efd9d7d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5090997159345719909
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +891,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00000095367, y: 0.7751}
+  m_AnchoredPosition: {x: 4.32e-12, y: 0.96855}
   m_SizeDelta: {x: 7.0828, y: 1.5502}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1488747353258206982

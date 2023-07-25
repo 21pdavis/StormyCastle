@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
+using System.Collections;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
 
     public LayerMask enemyLayers;
+
+    private float lastHealTime = 0f;
 
     private void Start()
     {
@@ -53,6 +56,23 @@ public class PlayerCombat : MonoBehaviour
             FlipSprite(directionFromCharacter, transform);
 
             MeleeAttack(transform, stats, enemyLayers);
+        }
+    }
+
+    public void Heal(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (Time.time < lastHealTime + stats.healInterval) return;
+
+            stats.Heal(stats.healAmount);
+            stats.SpendMana(stats.healCost);
+
+            GameObject particles = Instantiate(stats.healParticles, transform.position, Quaternion.identity);
+            float animTime = particles.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+            Destroy(particles, animTime);
+
+            //StartCoroutine(SpawnAndDespawnHealParticles());
         }
     }
 }

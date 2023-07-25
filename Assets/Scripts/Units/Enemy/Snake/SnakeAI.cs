@@ -33,6 +33,7 @@ public class SnakeAI : EnemyAI<SnakeStats>
 
             // spawn and shoot projectile
             Transform shootPoint = transform.Find("ShootPoint");
+            // TODO: snake shooting too high when player stands still
             Quaternion towardsTarget = Quaternion.LookRotation(Vector3.forward, target.position - shootPoint.position);
             GameObject projectile = Instantiate(stats.projectile, shootPoint.position, towardsTarget);
             ProjectileController projectileController = projectile.GetComponent<ProjectileController>();

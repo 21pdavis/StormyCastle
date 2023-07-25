@@ -62,6 +62,10 @@ public class StateManager : MonoBehaviour
                 Time.timeScale = 0f;
                 break;
             case GameState.Playing:
+                if (SceneManager.GetActiveScene().name != "Game")
+                {
+                    SceneManager.LoadScene("Game");
+                }
                 // Resume gameplay
                 Time.timeScale = 1f;
                 break;
