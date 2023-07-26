@@ -5,7 +5,8 @@
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
-/*[Bb]uild/
+/[Bb]uild/
+/[Ww]eb[Gg][Ll][Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
