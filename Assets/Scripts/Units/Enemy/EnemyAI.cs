@@ -5,9 +5,9 @@ using static Helpers;
 
 public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 {
-    public Transform target;
-
     public Stats stats { protected set; get; }
+
+    protected Transform target;
 
     protected int currentWaypoint = 1;
     protected int lastWaypoint = 1;

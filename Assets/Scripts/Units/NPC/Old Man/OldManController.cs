@@ -3,29 +3,31 @@ using UnityEngine.InputSystem;
 using TMPro;
 
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
+using static Helpers;
 
 public class OldManController : NPCController
 {
     [SerializeField] private OldManDialogue dialogue;
 
-    private GameObject canvas;
-    private GameObject dialoguePart;
-    private GameObject uiPromptPart;
+    public GameObject canvas;
+    public GameObject dialoguePart;
+    public GameObject uiPromptPart;
+    private GameObject player;
+    private AudioSource[] gruntSources;
     private TextMeshProUGUI textMeshPro;
 
-
-    private int currentLine = 0;
+    private int lastPlayed = -1; // start lastPlayed at -1 so the first time it's truly random and 0 isn't excluded
+    private int currentDialogueLine = 0;
 
     // TODO: bobbing animation for E prompt
     private void Start()
     {
-        canvas = transform.Find("Canvas").gameObject;
-        dialoguePart = canvas.transform.Find("Dialogue Part").gameObject;
-        uiPromptPart = canvas.transform.Find("UI Prompt Part").gameObject;
+        gruntSources = GetComponents<AudioSource>();
         textMeshPro = dialoguePart.transform.Find("Dialogue").GetComponent<TextMeshProUGUI>();
+        player = GameObject.Find("Player");
     }
 
-    // TODO: more generic way of doing this
+    // TODO: more generic way of doing this, can use some functional programming
     public void OnControlsChanged(CallbackContext context)
     {
         if (context.performed)
@@ -46,21 +48,34 @@ public class OldManController : NPCController
 
     public override void OnInteract()
     {
+        // look at player
+        FlipSprite(transform.position - player.transform.position, transform);
+
+        // switch dialogue
         if (!dialoguePart.activeSelf)
         {
             uiPromptPart.SetActive(false);
             dialoguePart.SetActive(true);
         }
 
-        if (currentLine == dialogue.dialogueLines.Length)
+        if (currentDialogueLine == dialogue.dialogueLines.Length)
         {
-            currentLine = 0;
+            currentDialogueLine = 0;
             uiPromptPart.SetActive(true);
             dialoguePart.SetActive(false);
             return;
         }
 
-        textMeshPro.text = dialogue.dialogueLines[currentLine];
-        currentLine++;
+        textMeshPro.text = dialogue.dialogueLines[currentDialogueLine];
+        currentDialogueLine++;
+
+        // play random grunt audio clip
+        int randomIndex = GetRandomExcluding(minInclusive: 0, maxExclusive: gruntSources.Length, excludedNumber: lastPlayed);
+        foreach (var source in gruntSources)
+        {
+            source.Stop();
+        }
+        gruntSources[randomIndex].Play();
+        lastPlayed = randomIndex;
     }
 }

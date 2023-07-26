@@ -5,16 +5,18 @@ using UnityEngine;
 
 static class Helpers
 {
-    public static void FlipSprite(Vector2 movement, Transform graphics)
+    public static void FlipSprite(Vector2 direction, Transform graphics)
     {
         // flip sprite
-        if (movement.x < 0)
+        if (direction.x < 0)
         {
-            graphics.localScale = new Vector3(-1f, 1f, 1f);
+            graphics.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            //graphics.localScale = new Vector3(-1f, 1f, 1f);
         }
-        else if (movement.x > 0)
+        else if (direction.x > 0)
         {
-            graphics.localScale = new Vector3(1f, 1f, 1f);
+            graphics.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            //graphics.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 
@@ -117,5 +119,26 @@ static class Helpers
 
         // play new music
         source.Play();
+    }
+
+    public static int GetRandomExcluding(int minInclusive, int maxExclusive, int excludedNumber)
+    {
+        int randomValue;
+
+        if (excludedNumber >= minInclusive && excludedNumber < maxExclusive)
+        {
+            // TODO: bad? slow?
+            do
+            {
+                randomValue = Random.Range(minInclusive, maxExclusive);
+            } while (randomValue == excludedNumber);
+        }
+        else
+        {
+            randomValue = Random.Range(minInclusive, maxExclusive);
+        }
+        
+
+        return randomValue;
     }
 }
