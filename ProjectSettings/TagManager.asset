@@ -49,6 +49,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Invisible Walls
+    uniqueID: 2683534183
+    locked: 0
   - name: Background
     uniqueID: 2061644047
     locked: 0
