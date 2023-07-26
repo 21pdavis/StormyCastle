@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
-using System.Collections;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -71,8 +70,6 @@ public class PlayerCombat : MonoBehaviour
             GameObject particles = Instantiate(stats.healParticles, transform.position, Quaternion.identity);
             float animTime = particles.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
             Destroy(particles, animTime);
-
-            //StartCoroutine(SpawnAndDespawnHealParticles());
         }
     }
 }

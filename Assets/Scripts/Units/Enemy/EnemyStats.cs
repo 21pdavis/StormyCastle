@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class EnemyStats : UnitStats
 {
-    [SerializeField] private float _aggroRange = 5;
-    [SerializeField] private float _attackInterval = 2;
+    [SerializeField] private float _aggroRange;
+    [SerializeField] private float _attackInterval;
 
     public virtual float aggroRange
     {

@@ -4,12 +4,15 @@ public class PlayerStats : UnitStats
 {
     [SerializeField] private ManaBar manaBar;
 
-    [SerializeField] private float _interactRange = 1.5f;
-    [SerializeField] private int _maxMana = 5;
-    [SerializeField] private int _currentMana = 5;
-    [SerializeField] private int _healAmount = 5;
-    [SerializeField] private int _healCost = 1;
-    [SerializeField] private float _healInterval = 2f;
+    [SerializeField] private float _interactRange;
+    [SerializeField] private int _maxMana;
+    [SerializeField] private int _currentMana;
+    [SerializeField] private float _manaRegenInterval;
+    [SerializeField] private int _healAmount;
+    [SerializeField] private int _healCost;
+    [SerializeField] private float _healInterval;
+
+    private float lastRegenedMana;
 
     /// <summary>
     /// The heal particle prefab
@@ -52,6 +55,21 @@ public class PlayerStats : UnitStats
         set { _healInterval = value; }
     }
 
+    public float manaRegenInterval
+    {
+        get { return _manaRegenInterval; }
+        set { _manaRegenInterval = value; }
+    }
+
+    private void Update()
+    {
+        if (Time.time > lastRegenedMana + manaRegenInterval)
+        {
+            lastRegenedMana = Time.time;
+            GainMana(1);
+        }
+    }
+
     private void ModifyMana(int delta)
     {
         // Ensure that the current mana doesn't exceed the maximum
@@ -67,6 +85,7 @@ public class PlayerStats : UnitStats
     public void GainMana(int amount)
     {
         ModifyMana(amount);
+        manaBar.SetMana(currentMana);
     }
 
     protected override void Die()
