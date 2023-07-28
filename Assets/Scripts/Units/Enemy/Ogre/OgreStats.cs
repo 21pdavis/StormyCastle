@@ -8,8 +8,9 @@ public class OgreStats : EnemyStats
 
     private GameObject castleMusicObject;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         castleMusicObject = GameObject.Find("Castle Music");
     }
 

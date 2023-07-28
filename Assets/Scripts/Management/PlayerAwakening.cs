@@ -20,14 +20,17 @@ public class PlayerAwakening
 
         if (blackScreenObject != null)
         {
+            blackScreenObject.SetActive(true);
             blackScreen = blackScreenObject.GetComponent<Image>();
         }
         if (bellSoundObject != null)
         {
+            bellSoundObject.SetActive(true);
             bellSound = bellSoundObject.GetComponent<AudioSource>();
         }
         if (ambientSoundObject != null)
         {
+            ambientSoundObject.SetActive(true);
             rainSound = ambientSoundObject.GetComponent<AudioSource>();
         }
     }

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStats : UnitStats
@@ -59,6 +60,13 @@ public class PlayerStats : UnitStats
     {
         get { return _manaRegenInterval; }
         set { _manaRegenInterval = value; }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        manaBar.SetMaxMana(maxMana);
+        manaBar.SetMana(currentMana);
     }
 
     private void Update()

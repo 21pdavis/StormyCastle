@@ -81,9 +81,9 @@ public class OgreAI : EnemyAI<OgreStats>
     // TODO: this is a hacky way to delay the attack, but it works for now
     private IEnumerator DelayedAttack()
     {
-        yield return new WaitForSeconds(0.75f);
+        // TODO: WaitForSecondsRealtime?
+        yield return new WaitForSeconds(1f);
         roarSource.Play();
-        yield return new WaitForSeconds(0.25f);
         MeleeAttack(transform, stats, targetLayers, pushForce: 20f);
         lastAttackTime = Time.time;
     }

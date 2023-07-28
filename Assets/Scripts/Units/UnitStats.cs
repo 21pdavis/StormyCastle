@@ -41,6 +41,12 @@ public abstract class UnitStats : MonoBehaviour
         set { _attackRange = value; }
     }
 
+    protected virtual void Start()
+    {
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
+    }
+
     private void ModifyHealth(int delta)
     {
         // Ensure that the current health doesn't exceed the maximum

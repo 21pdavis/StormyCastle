@@ -76,7 +76,7 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
         // get vector in direction of next waypoint (vector subtraction, https://www.varsitytutors.com/hotmath/hotmath_help/topics/adding-and-subtracting-vectors)
 
         // TODO: check and account for getting stuck on wall/environment collider (maybe check for how far traveled in last movement?)
-        if (Vector2.Distance(rb.position, (Vector2)path.vectorPath[currentWaypoint]) < stats.speed * Time.fixedDeltaTime)
+        if (Vector2.Distance(rb.position, (Vector2)path.vectorPath[currentWaypoint]) < stats.speed * Time.fixedDeltaTime * 5f && currentWaypoint + 1  < path.vectorPath.Count)
         {
             currentWaypoint++;
         }

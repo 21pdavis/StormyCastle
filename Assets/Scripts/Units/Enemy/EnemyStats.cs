@@ -20,11 +20,6 @@ public abstract class EnemyStats : UnitStats
         set { _attackInterval = value; }
     }
 
-    private void Start()
-    {
-        // TODO: Set up health bar/other resource bars
-    }
-
     public override void TakeDamage(int amount)
     {
         // TODO: update health bar

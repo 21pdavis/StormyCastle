@@ -49,7 +49,7 @@ public class OldManController : NPCController
     public override void OnInteract()
     {
         // look at player
-        FlipSprite(transform.position - player.transform.position, transform);
+        FlipSprite(transform.position - player.transform.position, transform, flipSpriteOnly: true);
 
         // switch dialogue
         if (!dialoguePart.activeSelf)
