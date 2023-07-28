@@ -5,18 +5,30 @@ using UnityEngine;
 
 static class Helpers
 {
-    public static void FlipSprite(Vector2 direction, Transform graphics)
+    public static void FlipSprite(Vector2 direction, Transform graphics, bool flipSpriteOnly=false)
     {
         // flip sprite
         if (direction.x < 0)
         {
-            graphics.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            //graphics.localScale = new Vector3(-1f, 1f, 1f);
+            if (flipSpriteOnly)
+            {
+                graphics.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+                graphics.localScale = new Vector3(-1f, 1f, 1f);
+            }
         }
         else if (direction.x > 0)
         {
-            graphics.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            //graphics.localScale = new Vector3(1f, 1f, 1f);
+            if (flipSpriteOnly)
+            {
+                graphics.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                graphics.localScale = new Vector3(1f, 1f, 1f);
+            }
         }
     }
 

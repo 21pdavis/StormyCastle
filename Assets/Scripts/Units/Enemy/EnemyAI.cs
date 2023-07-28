@@ -2,6 +2,8 @@ using UnityEngine;
 using Pathfinding;
 
 using static Helpers;
+using Unity.IO.LowLevel.Unsafe;
+using System.Collections;
 
 public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 {
@@ -25,6 +27,9 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
     // current targeted waypoint on path
     protected bool reachedEndOfPath = false;
     protected bool moving;
+    protected bool tracking = false;
+    protected float lastTrackTime = 0f;
+    protected const float trackInterval = 0.25f;
 
     protected virtual void Start()
     {
@@ -45,7 +50,7 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
         moving = false;
 
         // invoke function UpdatePath every 0.5 seconds
-        InvokeRepeating(nameof(UpdatePath), 0f, .25f);
+        //InvokeRepeating(nameof(UpdatePath), 0f, .25f);
     }
 
     // Tip: abstract means no implementation in base class, must be implemented in derived class, and virtual means there is a default implementation in base class but can be overridden in derived class
@@ -121,6 +126,12 @@ public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
     protected virtual void Update()
     {
         AnimateMove(animator, moving);
+
+        if (Time.time > lastTrackTime + trackInterval)
+        {
+            UpdatePath();
+            lastTrackTime = Time.time;
+        }
     }
 
     protected virtual void FixedUpdate()
