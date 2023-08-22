@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 positionDelta;
     public ParticleSystem dust;
     public bool canMove;
+    // for when an external source needs to stop the player from moving
+    public bool playerFreezeOverride;
     public bool moving;
 
 #if UNITY_EDITOR
@@ -42,8 +44,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canMove = !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Roll");
+        if (!playerFreezeOverride)
+        {
+            canMove = !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Roll");
+        }
         AnimateMove();
+
+        if (playerFreezeOverride || !canMove || !moving)
+        {
+            FlipSprite(GetProjectedMousePos() - (Vector2)transform.position, transform);
+        }
     }
 
     private void FixedUpdate()
@@ -67,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateMove()
     {
-        if (!canMove || rb.velocity.magnitude > 0.4f) // knockback velocity check
+        if (!canMove || playerFreezeOverride || rb.velocity.magnitude > 0.4f) // knockback/roll velocity check
             return;
 
         // move the player based on input and velocity
@@ -83,6 +93,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(CallbackContext context)
     {
+        if (playerFreezeOverride || !canMove)
+        {
+            moving = false;
+            return;
+        }
+
         if (context.canceled)
         {
             positionDelta = Vector2.zero;

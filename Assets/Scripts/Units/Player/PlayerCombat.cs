@@ -50,7 +50,6 @@ public class PlayerCombat : MonoBehaviour
         {
             // telekenesis object
             stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = GetProjectedMousePos();
-            GetComponent<PlayerMovement>().canMove = false;
         }
     }
 
@@ -91,6 +90,7 @@ public class PlayerCombat : MonoBehaviour
             // two cases: if we're already holding an object, we drop it, otherwise we pick up object nearest to cursor
             if (stats.heldObject == null)
             {
+                GetComponent<PlayerMovement>().playerFreezeOverride = true;
                 Vector2 mousePos = GetProjectedMousePos();
                 Collider2D[] targets = Physics2D.OverlapCircleAll(mousePos, stats.telekenesisRadius, telekenesisLayers);
 
@@ -116,7 +116,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = Vector2.zero;
                 stats.heldObject = null;
-                GetComponent<PlayerMovement>().canMove = true;
+                GetComponent<PlayerMovement>().playerFreezeOverride = false;
 
                 Addressables.ReleaseInstance(telekenesisLightHandle);
             }
