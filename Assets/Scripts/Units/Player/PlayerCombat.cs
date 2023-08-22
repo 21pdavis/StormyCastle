@@ -3,15 +3,19 @@ using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
 using System.Linq;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PlayerCombat : MonoBehaviour
 {
     private Animator animator;
     private PlayerStats stats;
     private Rigidbody2D rb;
+    private AsyncOperationHandle<GameObject> telekenesisLightHandle;
 
     public LayerMask enemyLayers;
     public LayerMask telekenesisLayers;
+
 
     private float lastHealTime = 0f;
 
@@ -93,6 +97,19 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D nearestTarget = targets.OrderBy(x => Vector2.Distance(x.transform.position, mousePos)).FirstOrDefault();
                 if (nearestTarget == default) return;
 
+                telekenesisLightHandle = Addressables.InstantiateAsync(
+                    key: "Prefabs/Telekenesis Glow",
+                    position: nearestTarget.transform.position,
+                    rotation: Quaternion.identity
+                );
+
+                telekenesisLightHandle.Completed += (obj) =>
+                {
+                    // set parent after completion to avoid positional offset
+                    obj.Result.transform.position = nearestTarget.transform.position;
+                    obj.Result.transform.SetParent(nearestTarget.transform);
+                };
+
                 stats.heldObject = nearestTarget.gameObject;
             }
             else
@@ -100,6 +117,8 @@ public class PlayerCombat : MonoBehaviour
                 stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = Vector2.zero;
                 stats.heldObject = null;
                 GetComponent<PlayerMovement>().canMove = true;
+
+                Addressables.ReleaseInstance(telekenesisLightHandle);
             }
         }
     }
