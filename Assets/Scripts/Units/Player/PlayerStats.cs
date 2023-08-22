@@ -12,6 +12,7 @@ public class PlayerStats : UnitStats
     [SerializeField] private int _healCost;
     [SerializeField] private float _healInterval;
     [SerializeField] private GameObject _heldObject;
+    [SerializeField] private float _telekenesisRadius;
 
     private float lastRegenedMana;
 
@@ -66,6 +67,12 @@ public class PlayerStats : UnitStats
     {
         get { return _heldObject; }
         set { _heldObject = value; }
+    }
+
+    public float telekenesisRadius
+    {
+        get { return _telekenesisRadius; }
+        set { _telekenesisRadius = value; }
     }
 
     protected override void Start()

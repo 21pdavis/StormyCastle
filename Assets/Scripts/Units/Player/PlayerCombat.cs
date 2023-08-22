@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
@@ -35,11 +34,21 @@ public class PlayerCombat : MonoBehaviour
         UnityEditor.Handles.color = newColor;
         UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
 
+        Gizmos.DrawWireSphere(GetProjectedMousePos(), stats.telekenesisRadius);
+
         UnityEditor.Handles.color = oldHandlesColor;
-
-
     }
 #endif
+
+    private void FixedUpdate()
+    {
+        if (stats.heldObject != null)
+        {
+            // telekenesis object
+            stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = GetProjectedMousePos();
+            GetComponent<PlayerMovement>().canMove = false;
+        }
+    }
 
     public void Attack(CallbackContext context)
     {
@@ -49,12 +58,7 @@ public class PlayerCombat : MonoBehaviour
             // play attack animation
             animator.SetTrigger("attackTrigger");
 
-            // determine direction of attack (normalized vector) and flip sprite accordingly
-            Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
-            Vector2 projectedMousePos = new Vector2(mousePos.x, mousePos.y);
-
-            Vector2 directionFromCharacter = (projectedMousePos - new Vector2(transform.position.x, transform.position.y)).normalized;
+            Vector2 directionFromCharacter = (GetProjectedMousePos() - new Vector2(transform.position.x, transform.position.y)).normalized;
             FlipSprite(directionFromCharacter, transform);
 
             MeleeAttack(transform, stats, enemyLayers);
@@ -84,14 +88,12 @@ public class PlayerCombat : MonoBehaviour
             if (stats.heldObject == null)
             {
                 Vector2 mousePos = GetProjectedMousePos();
-                Collider2D[] targets = Physics2D.OverlapCircleAll(mousePos, 100f, telekenesisLayers);
+                Collider2D[] targets = Physics2D.OverlapCircleAll(mousePos, stats.telekenesisRadius, telekenesisLayers);
 
                 Collider2D nearestTarget = targets.OrderBy(x => Vector2.Distance(x.transform.position, mousePos)).FirstOrDefault();
                 if (nearestTarget == default) return;
 
                 stats.heldObject = nearestTarget.gameObject;
-                nearestTarget.GetComponent<EnvironmentObjectController>().gravityTarget = mousePos;
-                GetComponent<PlayerMovement>().canMove = false;
             }
             else
             {
