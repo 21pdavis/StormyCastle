@@ -4,7 +4,7 @@ public abstract class UnitStats : MonoBehaviour
 {
     [SerializeField] private HealthBar healthBar;
 
-    [SerializeField] private int _maxHealth ;
+    [SerializeField] private int _maxHealth;
     [SerializeField] private int _currentHealth;
     // Risk of Rain style damage, each unit has an assigned "damage" value and other damages are based on percentages of that
     [SerializeField] private int _damage;

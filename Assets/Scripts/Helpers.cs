@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 static class Helpers
 {
@@ -152,5 +153,12 @@ static class Helpers
         
 
         return randomValue;
+    }
+
+    public static Vector2 GetProjectedMousePos()
+    {
+        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        return new Vector2(mousePos.x, mousePos.y);
     }
 }

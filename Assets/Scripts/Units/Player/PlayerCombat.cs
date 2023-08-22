@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
+using System.Linq;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
 
     public LayerMask enemyLayers;
+    public LayerMask telekenesisLayers;
 
     private float lastHealTime = 0f;
 
@@ -34,6 +36,7 @@ public class PlayerCombat : MonoBehaviour
         UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
 
         UnityEditor.Handles.color = oldHandlesColor;
+
 
     }
 #endif
@@ -70,6 +73,32 @@ public class PlayerCombat : MonoBehaviour
             GameObject particles = Instantiate(stats.healParticles, transform.position, Quaternion.identity);
             float animTime = particles.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
             Destroy(particles, animTime);
+        }
+    }
+
+    public void Telekenesis(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            // two cases: if we're already holding an object, we drop it, otherwise we pick up object nearest to cursor
+            if (stats.heldObject == null)
+            {
+                Vector2 mousePos = GetProjectedMousePos();
+                Collider2D[] targets = Physics2D.OverlapCircleAll(mousePos, 100f, telekenesisLayers);
+
+                Collider2D nearestTarget = targets.OrderBy(x => Vector2.Distance(x.transform.position, mousePos)).FirstOrDefault();
+                if (nearestTarget == default) return;
+
+                stats.heldObject = nearestTarget.gameObject;
+                nearestTarget.GetComponent<EnvironmentObjectController>().gravityTarget = mousePos;
+                GetComponent<PlayerMovement>().canMove = false;
+            }
+            else
+            {
+                stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = Vector2.zero;
+                stats.heldObject = null;
+                GetComponent<PlayerMovement>().canMove = true;
+            }
         }
     }
 }

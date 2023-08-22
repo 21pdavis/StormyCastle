@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStats : UnitStats
@@ -12,6 +11,7 @@ public class PlayerStats : UnitStats
     [SerializeField] private int _healAmount;
     [SerializeField] private int _healCost;
     [SerializeField] private float _healInterval;
+    [SerializeField] private GameObject _heldObject;
 
     private float lastRegenedMana;
 
@@ -60,6 +60,12 @@ public class PlayerStats : UnitStats
     {
         get { return _manaRegenInterval; }
         set { _manaRegenInterval = value; }
+    }
+
+    public GameObject heldObject
+    {
+        get { return _heldObject; }
+        set { _heldObject = value; }
     }
 
     protected override void Start()

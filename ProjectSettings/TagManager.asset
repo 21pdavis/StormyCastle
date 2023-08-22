@@ -25,7 +25,7 @@ TagManager:
   - Character
   - Particles
   - Projectiles
-  - 
+  - Environment Object
   - 
   - 
   - 
@@ -66,6 +66,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 2468159307
+    locked: 0
+  - name: Environment Object
+    uniqueID: 181196721
     locked: 0
   - name: Enemy
     uniqueID: 3629054113
