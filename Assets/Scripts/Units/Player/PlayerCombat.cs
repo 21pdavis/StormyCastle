@@ -5,6 +5,7 @@ using static Helpers;
 using System.Linq;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Collections.Generic;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -91,24 +92,17 @@ public class PlayerCombat : MonoBehaviour
             if (stats.heldObject == null)
             {
                 GetComponent<PlayerMovement>().playerFreezeOverride = true;
-                Vector2 mousePos = GetProjectedMousePos();
-                Collider2D[] targets = Physics2D.OverlapCircleAll(mousePos, stats.telekenesisRadius, telekenesisLayers);
 
-                Collider2D nearestTarget = targets.OrderBy(x => Vector2.Distance(x.transform.position, mousePos)).FirstOrDefault();
+                Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
                 if (nearestTarget == default) return;
 
-                telekenesisLightHandle = Addressables.InstantiateAsync(
-                    key: "Prefabs/Telekenesis Glow",
-                    position: nearestTarget.transform.position,
-                    rotation: Quaternion.identity
+                InstantiatePrefabByKey(
+                    ref telekenesisLightHandle,
+                    "Prefabs/Telekenesis Glow",
+                    nearestTarget.transform.position,
+                    Quaternion.identity,
+                    nearestTarget.transform
                 );
-
-                telekenesisLightHandle.Completed += (obj) =>
-                {
-                    // set parent after completion to avoid positional offset
-                    obj.Result.transform.position = nearestTarget.transform.position;
-                    obj.Result.transform.SetParent(nearestTarget.transform);
-                };
 
                 stats.heldObject = nearestTarget.gameObject;
             }
