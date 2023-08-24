@@ -44,13 +44,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool attackingOrRolling = animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Roll");
+
         if (!playerFreezeOverride)
         {
-            canMove = !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Roll");
+            canMove = !attackingOrRolling;
         }
-        AnimateMove();
 
-        if (playerFreezeOverride || !canMove || !moving)
+        if (canMove && !playerFreezeOverride)
+        {
+            AnimateMove();
+        }
+
+        if (!attackingOrRolling && (playerFreezeOverride || !canMove || !moving))
         {
             FlipSprite(GetProjectedMousePos() - (Vector2)transform.position, transform);
         }
@@ -93,11 +99,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(CallbackContext context)
     {
-        if (playerFreezeOverride || !canMove)
-        {
-            moving = false;
-            return;
-        }
+        //if (playerFreezeOverride || !canMove)
+        //{
+        //    //moving = false;
+        //    return;
+        //}
 
         if (context.canceled)
         {
