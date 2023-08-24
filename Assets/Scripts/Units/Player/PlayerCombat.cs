@@ -2,7 +2,6 @@ using UnityEngine;
 using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 using static Helpers;
-using System.Linq;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections.Generic;
@@ -13,10 +12,10 @@ public class PlayerCombat : MonoBehaviour
     private PlayerStats stats;
     private Rigidbody2D rb;
     private AsyncOperationHandle<GameObject> telekenesisLightHandle;
+    private List<GameObject> orbitingObjects = new List<GameObject>();
 
     public LayerMask enemyLayers;
     public LayerMask telekenesisLayers;
-
 
     private float lastHealTime = 0f;
 
@@ -114,6 +113,32 @@ public class PlayerCombat : MonoBehaviour
 
                 Addressables.ReleaseInstance(telekenesisLightHandle);
             }
+        }
+    }
+
+    private void AddToOrbit(GameObject target)
+    {
+        if (orbitingObjects.Count >= 3)
+            return;
+
+        orbitingObjects.Add(target);
+
+        InstantiatePrefabByKey(
+            ref telekenesisLightHandle,
+            "Prefabs/Telekenesis Glow",
+            target.transform.position,
+            Quaternion.identity,
+            target.transform
+        );
+    }
+
+    public void Orbit(CallbackContext context)
+    {
+        // TODO: different max orbiting objects based on level?
+        if (context.performed && stats.heldObject == null)
+        {
+            Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
+            AddToOrbit(nearestTarget.gameObject);
         }
     }
 }
