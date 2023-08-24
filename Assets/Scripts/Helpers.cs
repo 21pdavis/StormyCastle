@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 static class Helpers
 {
@@ -31,6 +33,38 @@ static class Helpers
                 graphics.localScale = new Vector3(1f, 1f, 1f);
             }
         }
+    }
+
+    public static void InstantiatePrefabByKey(ref AsyncOperationHandle<GameObject> handle, string key, Vector3 position, Quaternion rotation, Transform parent=null)
+    {
+        handle = Addressables.InstantiateAsync(
+            key: key,
+            position: position,
+            rotation: rotation
+        );
+
+        handle.Completed += (obj) =>
+        {
+            // set parent after completion to avoid positional offset
+            if (parent)
+            {
+                obj.Result.transform.SetParent(parent);
+                obj.Result.transform.position = parent.transform.position;
+            }
+        };
+    }
+
+    /// <summary>
+    /// Gets the closest to mouse.
+    /// </summary>
+    /// <param name="detectionRadius">The detection radius.</param>
+    /// <param name="targetLayers">The target layers.</param>
+    /// <returns>Returns the closest target or Collider2D's default if none detected</returns>
+    public static Collider2D GetNearestToMouse(float detectionRadius, LayerMask targetLayers)
+    {
+        Vector2 mousePos = GetProjectedMousePos();
+        Collider2D[] targets = Physics2D.OverlapCircleAll(mousePos, detectionRadius, targetLayers);
+        return targets.OrderBy(x => Vector2.Distance(x.transform.position, mousePos)).FirstOrDefault();
     }
 
     /// <summary>
