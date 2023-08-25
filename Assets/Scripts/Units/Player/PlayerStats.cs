@@ -13,6 +13,8 @@ public class PlayerStats : UnitStats
     [SerializeField] private float _healInterval;
     [SerializeField] private GameObject _heldObject;
     [SerializeField] private float _telekenesisRadius;
+    [SerializeField] private float _orbitRadius;
+    [SerializeField] private float _orbitSpeed;
 
     private float lastRegenedMana;
 
@@ -73,6 +75,18 @@ public class PlayerStats : UnitStats
     {
         get { return _telekenesisRadius; }
         set { _telekenesisRadius = value; }
+    }
+
+    public float orbitRadius
+    {
+        get { return _orbitRadius; }
+        set { _orbitRadius = value; }
+    }
+
+    public float orbitSpeed
+    {
+        get { return _orbitSpeed; }
+        set { _orbitSpeed = value; }
     }
 
     protected override void Start()

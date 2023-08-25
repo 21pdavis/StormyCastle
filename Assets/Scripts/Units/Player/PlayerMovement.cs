@@ -99,12 +99,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(CallbackContext context)
     {
-        //if (playerFreezeOverride || !canMove)
-        //{
-        //    //moving = false;
-        //    return;
-        //}
-
         if (context.canceled)
         {
             positionDelta = Vector2.zero;

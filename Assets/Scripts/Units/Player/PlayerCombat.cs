@@ -5,6 +5,8 @@ using static Helpers;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -38,7 +40,8 @@ public class PlayerCombat : MonoBehaviour
         UnityEditor.Handles.color = newColor;
         UnityEditor.Handles.DrawSolidArc(transform.position, Vector3.forward, -transform.up, transform.localScale.x > 0 ? 180 : -180, stats.attackRange);
 
-        Gizmos.DrawWireSphere(GetProjectedMousePos(), stats.telekenesisRadius);
+        UnityEditor.Handles.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, stats.orbitRadius);
 
         UnityEditor.Handles.color = oldHandlesColor;
     }
@@ -51,6 +54,8 @@ public class PlayerCombat : MonoBehaviour
             // telekenesis object
             stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = GetProjectedMousePos();
         }
+
+        UpdateOrbits();
     }
 
     public void Attack(CallbackContext context)
@@ -116,9 +121,40 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
+    // TODO: move this logic to script *on* the object, and just call a method on it
+    private void UpdateOrbits()
+    {
+        // TODO: apply additional force to make objects stay at constant distance from player (probably want to combine forces into one (+?))
+        foreach(GameObject orbitingObject in orbitingObjects)
+        {
+            Rigidbody2D orbitingRb = orbitingObject.GetComponent<Rigidbody2D>();
+            Vector2 differenceVector = orbitingObject.transform.position - transform.position;
+            Vector2 desiredDifferenceVector = differenceVector.normalized * stats.orbitRadius;
+
+            // if too close, find vector needed to push back into orbit first
+            if (Mathf.Abs(desiredDifferenceVector.magnitude - differenceVector.magnitude) > 0.01f)
+            {
+                Vector2 currentPosition = (Vector2)orbitingRb.transform.position;
+                orbitingObject.transform.position = currentPosition + (desiredDifferenceVector - differenceVector);
+                //orbitingRb.MovePosition(currentPosition + (desiredDifferenceVector - differenceVector) * Time.fixedDeltaTime);
+            }
+
+            // update after move
+            differenceVector = orbitingObject.transform.position - transform.position;
+            Vector2 normalizedTangentVector = Quaternion.AngleAxis(90, Const.rotationAxis) * differenceVector.normalized;
+
+            //! room for optimization in caching rb's
+            // TODO: interpolate positions more smoothly?
+
+            Vector2 orbitPostionDelta = Time.fixedDeltaTime * stats.orbitSpeed * normalizedTangentVector;
+            orbitingRb.MovePosition((Vector2)orbitingRb.transform.position + orbitPostionDelta);
+        }
+    }
+
     private void AddToOrbit(GameObject target)
     {
-        if (orbitingObjects.Count >= 3)
+        //! slow search if needing to scale in future, should probably use a hashset or something else
+        if (orbitingObjects.Count >= 3 || orbitingObjects.FirstOrDefault((obj) => ReferenceEquals(obj, target)) != default)
             return;
 
         orbitingObjects.Add(target);
