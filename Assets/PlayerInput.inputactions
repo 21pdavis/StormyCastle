@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Throw Orbiting Object",
+                    "type": "Button",
+                    "id": "87e0b23b-92c5-445d-ba07-1c902fab3a7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -741,6 +750,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Orbit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4f3d8e97-614f-4419-8341-15cefb9f03b2",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Throw Orbiting Object",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

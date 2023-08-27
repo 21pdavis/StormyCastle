@@ -5,7 +5,6 @@ using static Helpers;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using System.Linq;
 
 public class PlayerCombat : MonoBehaviour
@@ -15,6 +14,8 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
     private AsyncOperationHandle<GameObject> telekenesisLightHandle;
     private List<GameObject> orbitingObjects = new List<GameObject>();
+    // TODO: this is a temporary measure, couple this better
+    private List<AsyncOperationHandle<GameObject>> orbitingObjectHandles = new List<AsyncOperationHandle<GameObject>>();
 
     public LayerMask enemyLayers;
     public LayerMask telekenesisLayers;
@@ -100,8 +101,7 @@ public class PlayerCombat : MonoBehaviour
                 Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
                 if (nearestTarget == default) return;
 
-                InstantiatePrefabByKey(
-                    ref telekenesisLightHandle,
+                telekenesisLightHandle = InstantiatePrefabByKey(
                     "Prefabs/Telekenesis Glow",
                     nearestTarget.transform.position,
                     Quaternion.identity,
@@ -132,11 +132,10 @@ public class PlayerCombat : MonoBehaviour
             Vector2 desiredDifferenceVector = differenceVector.normalized * stats.orbitRadius;
 
             // if too close, find vector needed to push back into orbit first
+            Vector2 orbitAlignmentDelta = Vector2.zero;
             if (Mathf.Abs(desiredDifferenceVector.magnitude - differenceVector.magnitude) > 0.01f)
             {
-                Vector2 currentPosition = (Vector2)orbitingRb.transform.position;
-                orbitingObject.transform.position = currentPosition + (desiredDifferenceVector - differenceVector);
-                //orbitingRb.MovePosition(currentPosition + (desiredDifferenceVector - differenceVector) * Time.fixedDeltaTime);
+                orbitAlignmentDelta = desiredDifferenceVector - differenceVector;
             }
 
             // update after move
@@ -146,26 +145,31 @@ public class PlayerCombat : MonoBehaviour
             //! room for optimization in caching rb's
             // TODO: interpolate positions more smoothly?
 
-            Vector2 orbitPostionDelta = Time.fixedDeltaTime * stats.orbitSpeed * normalizedTangentVector;
-            orbitingRb.MovePosition((Vector2)orbitingRb.transform.position + orbitPostionDelta);
+            Vector2 orbitPositionDelta = Vector2.zero;
+            if (!GetComponent<PlayerMovement>().moving)
+            {
+                orbitPositionDelta = Time.fixedDeltaTime * stats.orbitSpeed * normalizedTangentVector;
+            }
+            orbitingRb.AddForce(orbitPositionDelta + orbitAlignmentDelta, ForceMode2D.Impulse);
+            //orbitingRb.MovePosition((Vector2)orbitingRb.transform.position + orbitPostionDelta + orbitAlignmentDelta);
         }
     }
 
     private void AddToOrbit(GameObject target)
     {
         //! slow search if needing to scale in future, should probably use a hashset or something else
-        if (orbitingObjects.Count >= 3 || orbitingObjects.FirstOrDefault((obj) => ReferenceEquals(obj, target)) != default)
+        if (orbitingObjects.Count >= 3 || orbitingObjects.Any((obj) => ReferenceEquals(obj, target)) )
             return;
 
-        orbitingObjects.Add(target);
-
-        InstantiatePrefabByKey(
-            ref telekenesisLightHandle,
+        AsyncOperationHandle<GameObject> orbitHandle = InstantiatePrefabByKey(
             "Prefabs/Telekenesis Glow",
             target.transform.position,
             Quaternion.identity,
             target.transform
         );
+
+        orbitingObjects.Add(target);
+        orbitingObjectHandles.Add(orbitHandle);
     }
 
     public void Orbit(CallbackContext context)
@@ -174,7 +178,31 @@ public class PlayerCombat : MonoBehaviour
         if (context.performed && stats.heldObject == null)
         {
             Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
-            AddToOrbit(nearestTarget.gameObject);
+            if (nearestTarget != default)
+            {
+                AddToOrbit(nearestTarget.gameObject);
+            }
+        }
+    }
+
+    public void ThrowOrbitingObject(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (orbitingObjects.Count == 0) return;
+
+            //! add impulse force to the closest/most recent added object or maybe least recent... playtest/see what other games do
+            GameObject leastRecentOrbitingObject = orbitingObjects[0];
+            Vector2 throwDirection = (GetProjectedMousePos() - (Vector2)leastRecentOrbitingObject.transform.position).normalized;
+
+            // remove from orbitingObjects list and destroy light prefab
+            orbitingObjects.RemoveAt(0);
+
+            Addressables.ReleaseInstance(orbitingObjectHandles[0]);
+            orbitingObjectHandles.RemoveAt(0);
+
+            // TODO: move object out to the side, maybe shake it a little, then throw
+            leastRecentOrbitingObject.GetComponent<Rigidbody2D>().AddForce(throwDirection * stats.orbitThrowForce, ForceMode2D.Impulse);
         }
     }
 }

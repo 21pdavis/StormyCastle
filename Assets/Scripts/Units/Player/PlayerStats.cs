@@ -15,6 +15,7 @@ public class PlayerStats : UnitStats
     [SerializeField] private float _telekenesisRadius;
     [SerializeField] private float _orbitRadius;
     [SerializeField] private float _orbitSpeed;
+    [SerializeField] private float _orbitThrowForce;
 
     private float lastRegenedMana;
 
@@ -87,6 +88,12 @@ public class PlayerStats : UnitStats
     {
         get { return _orbitSpeed; }
         set { _orbitSpeed = value; }
+    }
+
+    public float orbitThrowForce
+    {
+        get { return _orbitThrowForce; }
+        set { _orbitThrowForce = value; }
     }
 
     protected override void Start()
