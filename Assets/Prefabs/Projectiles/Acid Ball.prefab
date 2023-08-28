@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5890698297915536703}
   - component: {fileID: 446532266}
   m_Layer: 11
-  m_Name: Acid_Ball
+  m_Name: Acid Ball
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,8 +2,6 @@ using UnityEngine;
 using Pathfinding;
 
 using static Helpers;
-using Unity.IO.LowLevel.Unsafe;
-using System.Collections;
 
 public abstract class EnemyAI<Stats> : MonoBehaviour where Stats : EnemyStats
 {

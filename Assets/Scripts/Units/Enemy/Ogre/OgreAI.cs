@@ -78,7 +78,7 @@ public class OgreAI : EnemyAI<OgreStats>
         }
     }
 
-    // TODO: this is a hacky way to delay the attack, but it works for now
+    // TODO: this is a hacky way to delay the attack (relying on a fixed time value instead of frame data), but it works for now
     private IEnumerator DelayedAttack()
     {
         // TODO: WaitForSecondsRealtime?

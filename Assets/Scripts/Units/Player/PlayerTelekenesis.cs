@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -129,6 +130,64 @@ public class PlayerTelekenesis : MonoBehaviour
         }
     }
 
+    private IEnumerator ShakeObject(Rigidbody2D rb, float shakeDuration, float maxDistance, float frequency, float intensity = 1f, float intensityRampingFactor = 0f)
+    {
+        Vector2 initialPosition = rb.position;
+        float startTime = Time.time;
+
+        while (Time.time < startTime + shakeDuration)
+        {
+            float elapsedTime = Time.time - startTime;
+
+            float displacement = Mathf.Sin(elapsedTime * frequency * Mathf.PI * 2f) * maxDistance * intensity;
+            // TODO: make this work in 2D only instead of generating sinusoid in 3D and then projecting
+            float randomDirectionAngle = Random.Range(0f, 360f);
+            Vector2 newPosition = initialPosition + (Vector2)(Quaternion.AngleAxis(randomDirectionAngle, Const.rotationAxis) * new Vector3(displacement, displacement, 0f));
+            // TODO: RbSmoothMovePosition
+            rb.MovePosition(newPosition);
+
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    private IEnumerator ShakeAndThrowObject(OrbitingObject thrownObject, Vector2 throwDirection)
+    {
+        // keep reference to handle so we can clean up the light prefab later
+        AsyncOperationHandle<GameObject> handleForCleanup = thrownObject.handle;
+        // remove from orbiting objects list so the object does not continue trying to orbit
+        orbitingObjects.RemoveAt(0);
+
+        Rigidbody2D thrownRb = thrownObject.obj.GetComponent<Rigidbody2D>();
+
+        // find position off to the left or right of the player to place the object at before throwing
+        // TODO: check for collisions with other objects (i.e., walls), if so, move less far out
+        Vector2 leftLaunchPosition = transform.position + (Quaternion.AngleAxis(75, Const.rotationAxis) * throwDirection * 2.5f);
+        Vector2 rightLaunchPosition = transform.position + (Quaternion.AngleAxis(-75, Const.rotationAxis) * throwDirection * 2.5f);
+        
+        Vector2 closestLaunchPos = Vector2.Distance(thrownObject.obj.transform.position, leftLaunchPosition)
+            < Vector2.Distance(thrownObject.obj.transform.position, rightLaunchPosition) 
+            ? leftLaunchPosition : rightLaunchPosition;
+
+        float moveDuration = 0.2f;
+        StartCoroutine(RbSmoothMovePosition(thrownRb, closestLaunchPos, moveDuration));
+
+        // wait until object is in position OR until 1 second has passed
+        float startTime = Time.time;
+        while (Time.time < startTime + moveDuration && Mathf.Abs(((Vector2)thrownRb.transform.position - closestLaunchPos).magnitude) > 0.1f)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        // shake object in place before throwing with a building intensity
+        StartCoroutine(ShakeObject(rb: thrownRb, shakeDuration: 1f, maxDistance: 0.1f, frequency: 10f));
+
+        // clean up orbiting object's light prefab
+        Addressables.ReleaseInstance(handleForCleanup);
+
+        //! throw object (temp)
+        thrownRb.AddForce(throwDirection * stats.orbitThrowForce, ForceMode2D.Impulse);
+    }
+
     public void ThrowOrbitingObject(CallbackContext context)
     {
         if (context.performed)
@@ -136,15 +195,11 @@ public class PlayerTelekenesis : MonoBehaviour
             if (orbitingObjects.Count == 0) return;
 
             //! should it be least recent object? Closest to mouse? unsure... playtest/see what other games do
-            GameObject leastRecentOrbitingObject = orbitingObjects[0].obj;
-            Vector2 throwDirection = (GetProjectedMousePos() - (Vector2)leastRecentOrbitingObject.transform.position).normalized;
-
-            Addressables.ReleaseInstance(orbitingObjects[0].handle);
-
-            orbitingObjects.RemoveAt(0);
+            Vector2 throwDirection = (GetProjectedMousePos() - (Vector2)orbitingObjects[0].obj.transform.position).normalized;
+            StartCoroutine(ShakeAndThrowObject(orbitingObjects[0], throwDirection));
 
             // TODO: move object out to the side, maybe shake it a little, then throw for better visual clarity
-            leastRecentOrbitingObject.GetComponent<Rigidbody2D>().AddForce(throwDirection * stats.orbitThrowForce, ForceMode2D.Impulse);
+            //leastRecentOrbitingObject.GetComponent<Rigidbody2D>().AddForce(throwDirection * stats.orbitThrowForce, ForceMode2D.Impulse);
         }
     }
 }

@@ -104,6 +104,23 @@ static class Helpers
         source.volume = targetVolume;
     }
 
+    public static IEnumerator RbSmoothMovePosition(Rigidbody2D rb, Vector2 targetPosition, float moveDuration)
+    {
+        Vector3 initialPosition = rb.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < moveDuration)
+        {
+            // Lerp returns the point (elapsedTime / moveDuration)% between initialPosition and targetPosition
+            rb.MovePosition(Vector2.Lerp(initialPosition, targetPosition, elapsedTime / moveDuration));
+            elapsedTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        // ensure we end up at the target position
+        rb.MovePosition(targetPosition);
+    }
+
     public static void MeleeAttack(Transform attacker, UnitStats attackerStats, LayerMask targetLayers, float pushForce=0f)
     {
         // detect enemies in range of attack
