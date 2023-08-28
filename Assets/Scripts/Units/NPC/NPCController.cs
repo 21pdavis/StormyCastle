@@ -1,6 +1,6 @@
 using UnityEngine;
 
-using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
+using static UnityEngine.InputSystem.InputAction;
 
 public abstract class NPCController : MonoBehaviour
 {

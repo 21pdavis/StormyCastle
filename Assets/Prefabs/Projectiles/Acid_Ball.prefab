@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4342255177047685789}
   - component: {fileID: 3899376964742596957}
+  - component: {fileID: 2101916283534021350}
   - component: {fileID: 5890698297915536703}
   - component: {fileID: 446532266}
-  - component: {fileID: 2101916283534021350}
   m_Layer: 11
   m_Name: Acid_Ball
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 950023801
-  m_SortingLayer: 7
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7075fec274d90624b979ddb4ee1e84e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -88,6 +88,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2101916283534021350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3974771592056255690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c6c367601082a4d96c704c697ecd02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FriendlyLayers:
+    serializedVersion: 2
+    m_Bits: 8448
+  EnemyLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  StructureLayers:
+    serializedVersion: 2
+    m_Bits: 4224
+  speed: 5
+  impulseForce: 5
+  destroyOnCollision: 1
+  isFriendly: 1
 --- !u!70 &5890698297915536703
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -125,20 +150,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2101916283534021350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3974771592056255690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c6c367601082a4d96c704c697ecd02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  impulseForce: 5
 --- !u!1 &6102050703255581101
 GameObject:
   m_ObjectHideFlags: 0

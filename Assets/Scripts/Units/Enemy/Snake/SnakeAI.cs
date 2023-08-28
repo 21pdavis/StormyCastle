@@ -31,10 +31,10 @@ public class SnakeAI : EnemyAI<SnakeStats>
             animator.SetTrigger("attackTrigger");
             lastAttackTime = Time.time;
 
+            // TODO: "RangedAttack" Helpers method needed
             // spawn and shoot projectile
             Transform shootPoint = transform.Find("ShootPoint");
-            // TODO: snake shooting too high when player stands still
-            Quaternion towardsTarget = Quaternion.LookRotation(Vector3.forward, target.position - shootPoint.position);
+            Quaternion towardsTarget = Quaternion.LookRotation(Vector3.forward, target.GetComponent<Collider2D>().bounds.center - shootPoint.position);
             GameObject projectile = Instantiate(stats.projectile, shootPoint.position, towardsTarget);
             ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
 

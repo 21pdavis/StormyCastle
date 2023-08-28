@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 
-using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
+using static UnityEngine.InputSystem.InputAction;
 using static Helpers;
 
 public class OldManController : NPCController

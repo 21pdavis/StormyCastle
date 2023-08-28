@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-using CallbackContext = UnityEngine.InputSystem.InputAction.CallbackContext;
+using static UnityEngine.InputSystem.InputAction;
 
 // https://forum.unity.com/threads/lwrp-using-2d-lights-in-a-particle-system-emitter.718847/
 [RequireComponent(typeof(ParticleSystem))]

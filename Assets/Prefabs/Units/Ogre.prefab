@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2777204986061318200}
   - component: {fileID: 5909897213613441261}
   - component: {fileID: 6814292686242183642}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 8507893979420889307}
   - component: {fileID: 2304996302821642112}
   - component: {fileID: 2905600024875604426}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 6400729585422232252}
   - component: {fileID: 8940091971644352917}
   - component: {fileID: 5951304909083337132}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 6087109687234787457}
   - component: {fileID: 6087109687234787470}
   - component: {fileID: 1349741950}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: Ogre
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -665913183
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -121494852, guid: d86bc9e1df3642a4f89e2c88c46ea493, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 1026253411771534517}
   - component: {fileID: 2041927927766387499}
   - component: {fileID: 6218182884483550075}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 8475201760015095302}
   - component: {fileID: 2199552676892857460}
   - component: {fileID: 1786334784924197948}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

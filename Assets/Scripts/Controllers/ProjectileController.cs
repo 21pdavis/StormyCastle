@@ -2,43 +2,43 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    public LayerMask FriendlyLayers;
+    public LayerMask EnemyLayers;
+    public LayerMask StructureLayers;
     public UnitStats ShooterStats { get; set; }
     public UnitStats TargetStats { get; set; }
-    public float speed = 5f;
-    public float impulseForce = 5f;
+    public float speed;
+    public float impulseForce;
+    public bool destroyOnCollision;
+    public bool isFriendly;
 
     private Rigidbody2D rb;
 
     private void Awake()
     {
+        
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Environment"))
+        LayerMask targetLayers = (isFriendly ? EnemyLayers : FriendlyLayers) | StructureLayers;
+
+        if (targetLayers == (targetLayers | (1 << collision.gameObject.layer)))
         {
             Destroy(gameObject);
-            return;
-        }
 
-        if (collision.CompareTag("Environment Object"))
-        {
-            // neat little syntax here to check if the component exists and assign it to a variable
-            if (collision.TryGetComponent<Rigidbody2D>(out var objectRb))
+            if (collision.CompareTag("Environment Object") && collision.TryGetComponent<Rigidbody2D>(out var objectRb))
             {
+                // TODO: object damage/health for breaking barrels etc.?
                 objectRb.AddForce(rb.velocity.normalized * impulseForce, ForceMode2D.Impulse);
             }
-            Destroy(gameObject);
-            return;
-        }
 
-        // convention: use capsule colliders for hitboxes, circles for environment interactions
-        CapsuleCollider2D capsuleCollider = collision as CapsuleCollider2D;
-        if (capsuleCollider != null && TargetStats != null && TargetStats.CompareTag(collision.tag))
-        {
-            Destroy(gameObject);
-            TargetStats.TakeDamage(ShooterStats.damage);
+            // TODO: rework how TargetStats is set
+            if (collision.TryGetComponent<UnitStats>(out var targetStats))
+            {
+                targetStats.TakeDamage(ShooterStats.damage);
+            }
         }
     }
 }
