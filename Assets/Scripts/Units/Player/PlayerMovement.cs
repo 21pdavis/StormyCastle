@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerStats stats;
     private Rigidbody2D rb;
     private Animator animator;
-    private Vector2 positionDelta;
+    public Vector2 positionDelta { private set; get; }
     public ParticleSystem dust;
     public bool canMove;
     // for when an external source needs to stop the player from moving

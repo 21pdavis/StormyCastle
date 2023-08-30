@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 399686797}
   - component: {fileID: 1469461127}
   - component: {fileID: 1053400039}
+  - component: {fileID: 2762019209693669672}
   m_Layer: 12
   m_Name: TallCandelabra
   m_TagString: Environment Object
@@ -248,3 +249,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9673fd261bf618a41a643f839a84aeda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2762019209693669672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5876166266098440464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea4a7b23c394704eb677267ba0be777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactMultiplier: 1
+  damageableLayers:
+    serializedVersion: 2
+    m_Bits: 256

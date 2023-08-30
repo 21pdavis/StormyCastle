@@ -21,6 +21,10 @@ MonoBehaviour:
     m_Address: Prefabs/Telekenesis Glow
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: b6c96a77d4f8f7042819bbb665b89f52
+    m_Address: Projectiles/Acid Ball
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f7af769a3896f814ab7f1e0cbc317378, type: 2}
   m_SchemaSet:

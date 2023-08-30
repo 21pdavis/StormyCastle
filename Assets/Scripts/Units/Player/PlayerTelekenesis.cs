@@ -19,14 +19,32 @@ public class PlayerTelekenesis : MonoBehaviour
     public LayerMask telekenesisLayers;
 
     private PlayerStats stats;
+    private PlayerMovement movement;
 
     private AsyncOperationHandle<GameObject> telekenesisLightHandle;
-    private List<OrbitingObject> orbitingObjects = new List<OrbitingObject>();
+    private List<OrbitingObject> orbitingObjects;
+    // TODO: Left off here, need to rework "orbiting" into a different word - distinguish between objects stored for later throwing object actively circling player
+    private bool orbiting;
+
+    private void Start()
+    {
+        stats = GetComponent<PlayerStats>();
+        movement = GetComponent<PlayerMovement>();
+
+        orbiting = false;
+        orbitingObjects = new List<OrbitingObject>();
+    }
+
+    private void Update()
+    {
+        if (GetComponent<PlayerMovement>().moving)
+        {
+            orbiting = false;
+        }
+    }
 
     private void FixedUpdate()
     {
-        stats = GetComponent<PlayerStats>();
-
         UpdateOrbits();
     }
 
@@ -71,7 +89,7 @@ public class PlayerTelekenesis : MonoBehaviour
                 //GetComponent<PlayerMovement>().playerFreezeOverride = true;
 
                 Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
-                if (nearestTarget == default) return;
+                if (nearestTarget == default || !(nearestTarget.CompareTag("Environment Object") || nearestTarget.CompareTag("Enemy"))) return;
 
                 telekenesisLightHandle = InstantiatePrefabByKey(
                     "Prefabs/Telekenesis Glow",
@@ -79,12 +97,6 @@ public class PlayerTelekenesis : MonoBehaviour
                     Quaternion.identity,
                     nearestTarget.transform
                 );
-
-                // TODO: special case for projectiles, change isFriendly tag
-                if (nearestTarget.CompareTag("Projectile"))
-                {
-
-                }
 
                 stats.heldObject = nearestTarget.gameObject;
             }

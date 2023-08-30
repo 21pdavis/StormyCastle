@@ -5383,8 +5383,8 @@ MonoBehaviour:
     m_ActionName: Player/Orbit[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6754503349718047013}
-        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+      - m_Target: {fileID: 3930310128842949702}
+        m_TargetAssemblyTypeName: PlayerTelekenesis, Assembly-CSharp
         m_MethodName: ThrowOrbitingObject
         m_Mode: 0
         m_Arguments:

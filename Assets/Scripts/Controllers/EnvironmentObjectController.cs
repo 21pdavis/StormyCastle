@@ -22,6 +22,7 @@ public class EnvironmentObjectController : MonoBehaviour
         if (rb.velocity.magnitude > 0.01f)
         {
             //! NOTE: very minor ~5 fps performance hit here, but benefits are very much worth it to update paths, will see if it becomes a scaling issue
+            // this is also somewhat optimized already since only the graphs overlapping the collider bounds are updated
             AstarPath.active.UpdateGraphs(gameObject.GetComponent<Collider2D>().bounds);
         }
 
