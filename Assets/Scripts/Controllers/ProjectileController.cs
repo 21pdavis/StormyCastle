@@ -24,7 +24,7 @@ public class ProjectileController : MonoBehaviour
     {
         LayerMask targetLayers = (isFriendly ? EnemyLayers : FriendlyLayers) | StructureLayers;
 
-        if (targetLayers == (targetLayers | (1 << collision.gameObject.layer)))
+        if ((targetLayers & (1 << collision.gameObject.layer)) != 0)
         {
             Destroy(gameObject);
 
