@@ -10,7 +10,7 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
 
     public LayerMask enemyLayers;
-    public LayerMask telekenesisLayers;
+    public LayerMask telekinesisLayers;
 
     private float lastHealTime = 0f;
 
@@ -44,7 +44,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (stats.heldObject != null)
         {
-            // telekenesis object
+            // telekinesis object
             stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = GetProjectedMousePos();
         }
     }

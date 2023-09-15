@@ -15,7 +15,7 @@ public class PlayerStats : UnitStats
     [SerializeField] private int _healCost;
     [SerializeField] private float _healInterval;
     [SerializeField] private GameObject _heldObject;
-    [SerializeField] private float _telekenesisRadius;
+    [SerializeField] private float _telekinesisRadius;
     [SerializeField] private float _orbitRadius;
     [SerializeField] private float _orbitSpeed;
     [SerializeField] private float _orbitThrowForce;
@@ -75,10 +75,10 @@ public class PlayerStats : UnitStats
         set { _heldObject = value; }
     }
 
-    public float telekenesisRadius
+    public float telekinesisRadius
     {
-        get { return _telekenesisRadius; }
-        set { _telekenesisRadius = value; }
+        get { return _telekinesisRadius; }
+        set { _telekinesisRadius = value; }
     }
 
     public float orbitRadius

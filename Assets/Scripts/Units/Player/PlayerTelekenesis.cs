@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using static UnityEngine.InputSystem.InputAction;
 using static Helpers;
 
-public class PlayerTelekenesis : MonoBehaviour
+public class PlayerTelekinesis : MonoBehaviour
 {
     private struct OrbitingObject
     {
@@ -16,12 +16,12 @@ public class PlayerTelekenesis : MonoBehaviour
         public AsyncOperationHandle<GameObject> handle;
     }
 
-    public LayerMask telekenesisLayers;
+    public LayerMask telekinesisLayers;
 
     private PlayerStats stats;
     private PlayerMovement movement;
 
-    private AsyncOperationHandle<GameObject> telekenesisLightHandle;
+    private AsyncOperationHandle<GameObject> telekinesisLightHandle;
     private List<OrbitingObject> orbitingObjects;
     // TODO: Left off here, need to rework "orbiting" into a different word - distinguish between objects stored for later throwing object actively circling player
     private bool orbiting;
@@ -48,7 +48,7 @@ public class PlayerTelekenesis : MonoBehaviour
         UpdateOrbits();
     }
 
-    public void Telekenesis(CallbackContext context)
+    public void Telekinesis(CallbackContext context)
     {
         if (context.performed)
         {
@@ -58,7 +58,7 @@ public class PlayerTelekenesis : MonoBehaviour
                 // TODO: revisit: should player be unable to move while holding an object? Don't see why. Maybe just slow down instead?
                 //GetComponent<PlayerMovement>().playerFreezeOverride = true;
 
-                Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
+                Collider2D nearestTarget = GetNearestToMouse(stats.telekinesisRadius, telekinesisLayers);
                 if (nearestTarget == default || !(nearestTarget.CompareTag("Environment Object") || nearestTarget.CompareTag("Enemy"))) return;
 
                 if (nearestTarget.TryGetComponent<PhysicsDamageController>(out var controller))
@@ -66,8 +66,8 @@ public class PlayerTelekenesis : MonoBehaviour
                     controller.canDealPhysicsDamage = true;
                 }
 
-                telekenesisLightHandle = InstantiatePrefabByKey(
-                    "Prefabs/Telekenesis Glow",
+                telekinesisLightHandle = InstantiatePrefabByKey(
+                    "Prefabs/Telekinesis Glow",
                     nearestTarget.transform.position,
                     Quaternion.identity,
                     nearestTarget.transform
@@ -82,7 +82,7 @@ public class PlayerTelekenesis : MonoBehaviour
                 stats.heldObject = null;
                 GetComponent<PlayerMovement>().playerFreezeOverride = false;
 
-                Addressables.ReleaseInstance(telekenesisLightHandle);
+                Addressables.ReleaseInstance(telekinesisLightHandle);
             }
         }
     }
@@ -141,7 +141,7 @@ public class PlayerTelekenesis : MonoBehaviour
             return;
 
         AsyncOperationHandle<GameObject> orbitHandle = InstantiatePrefabByKey(
-            "Prefabs/Telekenesis Glow",
+            "Prefabs/Telekinesis Glow",
             target.transform.position,
             Quaternion.identity,
             target.transform
@@ -155,7 +155,7 @@ public class PlayerTelekenesis : MonoBehaviour
         // TODO: different max orbiting objects based on level? Q: is wider orbit better? not necessarily right?
         if (context.performed && stats.heldObject == null)
         {
-            Collider2D nearestTarget = GetNearestToMouse(detectionRadius: stats.telekenesisRadius, targetLayers: telekenesisLayers);
+            Collider2D nearestTarget = GetNearestToMouse(detectionRadius: stats.telekinesisRadius, targetLayers: telekinesisLayers);
             if (
                 nearestTarget != default // some object close enough to mouse
                 && Vector2.Distance(nearestTarget.transform.position, (Vector2)transform.position) < 2.5f * stats.orbitRadius // in range
