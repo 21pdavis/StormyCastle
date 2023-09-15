@@ -19,13 +19,13 @@ public class PhysicsDamageController : MonoBehaviour
     }
 
     /// <summary>
-    /// Make object temporarily able to deal damage for 2 seconds, enough to travel and hit something
+    /// Make object temporarily able to deal damage for 3 seconds, enough to travel and hit something
     /// </summary>
     /// <returns></returns>
     public IEnumerator MakeDamaging()
     {
         canDealPhysicsDamage = true;
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(3f);
         canDealPhysicsDamage = false;
     }
 
