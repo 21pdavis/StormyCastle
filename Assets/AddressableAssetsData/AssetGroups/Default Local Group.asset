@@ -25,6 +25,14 @@ MonoBehaviour:
     m_Address: Projectiles/Acid Ball
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: afe69e776b63257469ce40a091520c36
+    m_Address: UI/Game Over
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 78616d1ca43d48e458500d2b11228ad5
+    m_Address: UI/You Win
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f7af769a3896f814ab7f1e0cbc317378, type: 2}
   m_SchemaSet:

@@ -48,6 +48,45 @@ public class PlayerTelekenesis : MonoBehaviour
         UpdateOrbits();
     }
 
+    public void Telekenesis(CallbackContext context)
+    {
+        if (context.performed)
+        {
+            // two cases: if we're already holding an object, we drop it, otherwise we pick up object nearest to cursor
+            if (stats.heldObject == null)
+            {
+                // TODO: revisit: should player be unable to move while holding an object? Don't see why. Maybe just slow down instead?
+                //GetComponent<PlayerMovement>().playerFreezeOverride = true;
+
+                Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
+                if (nearestTarget == default || !(nearestTarget.CompareTag("Environment Object") || nearestTarget.CompareTag("Enemy"))) return;
+
+                if (nearestTarget.TryGetComponent<PhysicsDamageController>(out var controller))
+                {
+                    controller.canDealPhysicsDamage = true;
+                }
+
+                telekenesisLightHandle = InstantiatePrefabByKey(
+                    "Prefabs/Telekenesis Glow",
+                    nearestTarget.transform.position,
+                    Quaternion.identity,
+                    nearestTarget.transform
+                );
+
+                stats.heldObject = nearestTarget.gameObject;
+            }
+            else
+            {
+                stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = Vector2.zero;
+                StartCoroutine(stats.heldObject.GetComponent<PhysicsDamageController>().MakeDamaging());
+                stats.heldObject = null;
+                GetComponent<PlayerMovement>().playerFreezeOverride = false;
+
+                Addressables.ReleaseInstance(telekenesisLightHandle);
+            }
+        }
+    }
+
     private void UpdateOrbits()
     {
         // TODO: apply additional force to make objects stay at constant distance from player (probably want to combine forces into one (+?))
@@ -76,42 +115,24 @@ public class PlayerTelekenesis : MonoBehaviour
             }
             orbitingRb.AddForce(orbitPositionDelta + orbitAlignmentDelta, ForceMode2D.Impulse);
         }
-    }
 
-    public void Telekenesis(CallbackContext context)
-    {
-        if (context.performed)
-        {
-            // two cases: if we're already holding an object, we drop it, otherwise we pick up object nearest to cursor
-            if (stats.heldObject == null)
-            {
-                // TODO: revisit: should player be unable to move while holding an object? Don't see why. Maybe just slow down instead?
-                //GetComponent<PlayerMovement>().playerFreezeOverride = true;
+        // for peeling away when stuck behind a wall
+        orbitingObjects = orbitingObjects.Where(
+            orbitingObject => {
+                float dist = Vector2.Distance(orbitingObject.obj.transform.position, (Vector2)transform.position);
 
-                Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
-                if (nearestTarget == default || !(nearestTarget.CompareTag("Environment Object") || nearestTarget.CompareTag("Enemy"))) return;
-
-                telekenesisLightHandle = InstantiatePrefabByKey(
-                    "Prefabs/Telekenesis Glow",
-                    nearestTarget.transform.position,
-                    Quaternion.identity,
-                    nearestTarget.transform
-                );
-
-                stats.heldObject = nearestTarget.gameObject;
+                if (dist < 2.5f * stats.orbitRadius)
+                {
+                    return true;
+                }
+                else
+                {
+                    Addressables.ReleaseInstance(orbitingObject.handle);
+                    return false;
+                }
             }
-            else
-            {
-                stats.heldObject.GetComponent<EnvironmentObjectController>().gravityTarget = Vector2.zero;
-                stats.heldObject = null;
-                GetComponent<PlayerMovement>().playerFreezeOverride = false;
-
-                Addressables.ReleaseInstance(telekenesisLightHandle);
-            }
-        }
+        ).ToList();
     }
-
-    
 
     private void AddToOrbit(GameObject target)
     {
@@ -134,8 +155,12 @@ public class PlayerTelekenesis : MonoBehaviour
         // TODO: different max orbiting objects based on level? Q: is wider orbit better? not necessarily right?
         if (context.performed && stats.heldObject == null)
         {
-            Collider2D nearestTarget = GetNearestToMouse(stats.telekenesisRadius, telekenesisLayers);
-            if (nearestTarget != default)
+            Collider2D nearestTarget = GetNearestToMouse(detectionRadius: stats.telekenesisRadius, targetLayers: telekenesisLayers);
+            if (
+                nearestTarget != default // some object close enough to mouse
+                && Vector2.Distance(nearestTarget.transform.position, (Vector2)transform.position) < 2.5f * stats.orbitRadius // in range
+                && !orbitingObjects.Any(orbitingObject => orbitingObject.obj.GetComponent<Collider2D>() == nearestTarget) // not already in list
+            )
             {
                 AddToOrbit(nearestTarget.gameObject);
             }
@@ -144,6 +169,7 @@ public class PlayerTelekenesis : MonoBehaviour
 
     private IEnumerator ShakeObject(Rigidbody2D rb, float shakeDuration, float maxDistance, float frequency, float intensity = 1f, float intensityRampingFactor = 0f)
     {
+        // TODO: no impact damage while shaking
         Vector2 initialPosition = rb.position;
         float startTime = Time.time;
 
@@ -197,6 +223,7 @@ public class PlayerTelekenesis : MonoBehaviour
         Addressables.ReleaseInstance(handleForCleanup);
 
         //! throw object (temp)
+        StartCoroutine(thrownRb.GetComponent<PhysicsDamageController>().MakeDamaging());
         thrownRb.AddForce(throwDirection * stats.orbitThrowForce, ForceMode2D.Impulse);
     }
 

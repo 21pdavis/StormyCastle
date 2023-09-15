@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 335733940}
   - component: {fileID: 5798438066247509280}
   - component: {fileID: 1415932700567891435}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel
   m_TagString: Environment Object
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea4a7b23c394704eb677267ba0be777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactMultiplier: 1
+  impactMultiplier: 10
   damageableLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448

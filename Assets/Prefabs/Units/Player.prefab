@@ -5078,9 +5078,10 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 100
   _damage: 50
-  _speed: 4.5
+  _speed: 5
   _attackRange: 1
   manaBar: {fileID: 0}
+  _gameOverText: {fileID: 3940473874759832334, guid: afe69e776b63257469ce40a091520c36, type: 3}
   _interactRange: 1.5
   _maxMana: 5
   _currentMana: 5
@@ -5124,7 +5125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   telekenesisLayers:
     serializedVersion: 2
     m_Bits: 4096

@@ -35,12 +35,17 @@ static class Helpers
         }
     }
 
-    public static AsyncOperationHandle<GameObject> InstantiatePrefabByKey(string key, Vector3 position, Quaternion rotation, Transform parent=null)
+    public static AsyncOperationHandle<GameObject> InstantiatePrefabByKey(string key, Vector3 position, Quaternion? rotation=null, Transform parent=null)
     {
+        if (rotation == null)
+        {
+            rotation = Quaternion.identity;
+        }
+
         AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(
             key: key,
             position: position,
-            rotation: rotation
+            rotation: (Quaternion)rotation
         );
 
         handle.Completed += (obj) =>
@@ -213,5 +218,45 @@ static class Helpers
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
         return new Vector2(mousePos.x, mousePos.y);
+    }
+
+    public static IEnumerator WinSequence()
+    {
+        Time.timeScale = 0;
+
+        Vector3 centerOfScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, -10f));
+        InstantiatePrefabByKey(
+            key: "UI/You Win",
+            position: centerOfScreen,
+            parent: GameObject.Find("HUD Canvas").transform
+        );
+        yield return new WaitForSecondsRealtime(3f);
+        ExitGame();
+    }
+
+    public static IEnumerator DieSequence()
+    {
+        Time.timeScale = 0;
+
+        Vector3 centerOfScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, -10f));
+        InstantiatePrefabByKey(
+            key: "UI/Game Over",
+            position: centerOfScreen,
+            parent: GameObject.Find("HUD Canvas").transform
+        );
+        yield return new WaitForSecondsRealtime(3f);
+        ExitGame();
+    }
+
+    private static void ExitGame()
+    {
+        // https://discussions.unity.com/t/application-quit-not-working/130493
+#if UNITY_EDITOR
+        // Application.Quit() does not work in the editor so
+        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

@@ -1,8 +1,11 @@
 using UnityEngine;
 
+using static Helpers;
+
 public class PlayerStats : UnitStats
 {
     [SerializeField] private ManaBar manaBar;
+    [SerializeField] private GameObject _gameOverText;
 
     [SerializeField] private float _interactRange;
     [SerializeField] private int _maxMana;
@@ -96,6 +99,12 @@ public class PlayerStats : UnitStats
         set { _orbitThrowForce = value; }
     }
 
+    public GameObject gameOverText
+    {
+        get { return _gameOverText; }
+        set { _gameOverText = value; }
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -130,8 +139,14 @@ public class PlayerStats : UnitStats
         manaBar.SetMana(currentMana);
     }
 
+    public void Win()
+    {
+        StartCoroutine(WinSequence());
+    }
+
     protected override void Die()
     {
-        // TODO
+        GetComponent<PlayerMovement>().playerFreezeOverride = true;
+        StartCoroutine(DieSequence());
     }
 }
