@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: c0d5392e1e4dff148a54853022dae69c
   m_SerializeEntries:
   - m_GUID: 9676df291eeee9943affe32061b61be8
-    m_Address: Prefabs/Telekenesis Glow
+    m_Address: Lights/Telekinesis Glow
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: b6c96a77d4f8f7042819bbb665b89f52

@@ -67,7 +67,7 @@ public class PlayerTelekinesis : MonoBehaviour
                 }
 
                 telekinesisLightHandle = InstantiatePrefabByKey(
-                    "Prefabs/Telekinesis Glow",
+                    "Lights/Telekinesis Glow",
                     nearestTarget.transform.position,
                     Quaternion.identity,
                     nearestTarget.transform
@@ -141,7 +141,7 @@ public class PlayerTelekinesis : MonoBehaviour
             return;
 
         AsyncOperationHandle<GameObject> orbitHandle = InstantiatePrefabByKey(
-            "Prefabs/Telekinesis Glow",
+            "Lights/Telekinesis Glow",
             target.transform.position,
             Quaternion.identity,
             target.transform
@@ -163,6 +163,10 @@ public class PlayerTelekinesis : MonoBehaviour
             )
             {
                 AddToOrbit(nearestTarget.gameObject);
+            }
+            else
+            {
+                Debug.Log("False");
             }
         }
     }

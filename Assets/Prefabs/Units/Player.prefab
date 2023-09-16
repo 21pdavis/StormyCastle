@@ -4947,7 +4947,7 @@ GameObject:
   - component: {fileID: 6754503349718047070}
   - component: {fileID: 6754503349718047013}
   - component: {fileID: 7536593495545040287}
-  - component: {fileID: 3930310128842949702}
+  - component: {fileID: 722957166913352587}
   - component: {fileID: 6754503349718047065}
   - component: {fileID: 6754503349718047064}
   m_Layer: 9
@@ -5090,7 +5090,7 @@ MonoBehaviour:
   _healCost: 1
   _healInterval: 2
   _heldObject: {fileID: 0}
-  _telekenesisRadius: 5
+  _telekinesisRadius: 0
   _orbitRadius: 2
   _orbitSpeed: 10
   _orbitThrowForce: 50
@@ -5126,9 +5126,9 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8448
-  telekenesisLayers:
+  telekinesisLayers:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 0
 --- !u!114 &7536593495545040287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5141,7 +5141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78111f37982ef849a33f2068c1c8823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3930310128842949702
+--- !u!114 &722957166913352587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5153,9 +5153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ffd5561a1b06d48a1e78689a6f2ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  telekenesisLayers:
+  telekinesisLayers:
     serializedVersion: 2
-    m_Bits: 6144
+    m_Bits: 4096
 --- !u!95 &6754503349718047065
 Animator:
   serializedVersion: 5
@@ -5352,7 +5352,7 @@ MonoBehaviour:
     m_ActionName: Player/Heal[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3930310128842949702}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerTelekenesis, Assembly-CSharp
         m_MethodName: Telekenesis
         m_Mode: 0
@@ -5368,7 +5368,7 @@ MonoBehaviour:
     m_ActionName: Player/Telekenesis[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3930310128842949702}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerTelekenesis, Assembly-CSharp
         m_MethodName: Orbit
         m_Mode: 0
@@ -5384,7 +5384,7 @@ MonoBehaviour:
     m_ActionName: Player/Orbit[/Keyboard/f]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3930310128842949702}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerTelekenesis, Assembly-CSharp
         m_MethodName: ThrowOrbitingObject
         m_Mode: 0

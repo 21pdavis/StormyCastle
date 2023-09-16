@@ -10,7 +10,6 @@ public class PlayerCombat : MonoBehaviour
     private Rigidbody2D rb;
 
     public LayerMask enemyLayers;
-    public LayerMask telekinesisLayers;
 
     private float lastHealTime = 0f;
 
